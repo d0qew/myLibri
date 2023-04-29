@@ -16,6 +16,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Главная"
         view.backgroundColor = .white
         presenter?.viewDidLoaded()
     }
