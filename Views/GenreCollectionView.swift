@@ -20,7 +20,7 @@ class GenreCollectionView: UICollectionView {
         setDelegate()
         setDataSource()
         backgroundColor = UIColor.clear
-        //        register( , forCellWithReuseIdentifier: )
+        register(GenreCollectionViewCell.self, forCellWithReuseIdentifier: GenreCollectionViewCell.reuseId)
         translatesAutoresizingMaskIntoConstraints = false
         alwaysBounceHorizontal = true
         showsHorizontalScrollIndicator = false
