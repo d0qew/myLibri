@@ -22,13 +22,13 @@ class TabBarController: UITabBarController {
     }
     
     private func generateNVC(viewController: UIViewController, title: String, image: UIImage?) -> UIViewController {
-            viewController.tabBarItem.title = title
-            viewController.tabBarItem.image = image
+        viewController.tabBarItem.title = title
+        viewController.tabBarItem.image = image
         
-            let navigationVC = UINavigationController(rootViewController: viewController)
-            navigationVC.navigationBar.barStyle = .default
-            navigationVC.navigationBar.prefersLargeTitles = true
+        let navigationVC = UINavigationController(rootViewController: viewController)
+        navigationVC.navigationBar.barStyle = .default
+        navigationVC.navigationBar.prefersLargeTitles = true
         
-            return navigationVC
-        }
+        return navigationVC
+    }
 }
