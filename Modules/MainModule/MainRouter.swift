@@ -12,6 +12,5 @@ protocol MainRouterProtocol: AnyObject {
 }
 
 class MainRouter: MainRouterProtocol{
-    
     weak var view: MainViewControllerProtocol?
 }

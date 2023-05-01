@@ -16,15 +16,13 @@ class LibraryPresenter {
     var router: LibraryRouterProtocol
     var interactor: LibraryInteractor
     
-    
     init(router: LibraryRouterProtocol, interactor:LibraryInteractor) {
         self.router = router
         self.interactor = interactor
-        
     }
 }
 
-//  MARK: EXTENSION
+//  MARK: LibraryPresenterProtocol
 extension LibraryPresenter: LibraryPresenterProtocol {
     func viewDidLoaded() {
         print("view did loaded")

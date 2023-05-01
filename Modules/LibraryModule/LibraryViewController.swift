@@ -8,11 +8,11 @@
 import UIKit
 
 protocol LibraryViewControllerProtocol: AnyObject {
+    
 }
 
 class LibraryViewController: UIViewController {
     var presenter: LibraryPresenterProtocol?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class LibraryViewController: UIViewController {
 
 
 
-//  MARK: EXTENSION
+//  MARK: LibraryViewControllerProtocol
 extension LibraryViewController: LibraryViewControllerProtocol {
     
 }

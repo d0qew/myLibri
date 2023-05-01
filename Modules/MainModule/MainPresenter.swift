@@ -16,15 +16,13 @@ class MainPresenter {
     var router: MainRouterProtocol
     var interactor: MainInteractor
     
-    
     init(router: MainRouterProtocol, interactor: MainInteractor) {
         self.router = router
         self.interactor = interactor
-        
     }
 }
 
-//  MARK: EXTENSION
+//  MARK: MainPresenterProtocol
 extension MainPresenter: MainPresenterProtocol {
     func viewDidLoaded() {
         print("view did loaded")

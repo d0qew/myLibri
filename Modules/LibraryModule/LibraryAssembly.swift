@@ -8,7 +8,6 @@
 import UIKit
 
 class LibraryAssembly{
-   
     static func configure() -> UIViewController {
         let interactor = LibraryInteractor()
         let router = LibraryRouter()

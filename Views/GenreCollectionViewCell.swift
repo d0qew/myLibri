@@ -35,25 +35,26 @@ class GenreCollectionViewCell: UICollectionViewCell {
     }
     
     private func initialize() {
-//        backgroundColor = UIColor.clear
+        backgroundColor = UIColor.clear
 //        layer.cornerRadius = 15
 //        layer.borderColor = UIColor.white.cgColor
 //        layer.borderWidth = 3
         
         addSubview(imageView)
         imageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(5)
+            make.bottom.equalToSuperview().inset(5)
+            make.size.equalTo(100)
         }
        
-        
         addSubview(title)
         title.snp.makeConstraints { make in
-            
+            make.leading.equalToSuperview().inset(5)
+            make.top.equalTo(imageView).inset(5)
         }
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

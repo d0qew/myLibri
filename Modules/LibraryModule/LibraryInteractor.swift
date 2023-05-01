@@ -8,6 +8,7 @@
 import Foundation
 
 protocol LibraryInteractorProtocol: AnyObject{
+    
 }
 
 class LibraryInteractor {
@@ -15,7 +16,7 @@ class LibraryInteractor {
     
 }
 
-//  MARK: EXTENSION
+//  MARK: LibraryInteractorProtocol
 extension LibraryInteractor: LibraryInteractorProtocol {
     
 }

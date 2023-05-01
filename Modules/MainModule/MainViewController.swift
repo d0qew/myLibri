@@ -8,11 +8,11 @@
 import UIKit
 
 protocol MainViewControllerProtocol: AnyObject {
+    
 }
 
 class MainViewController: UIViewController {
     var presenter: MainPresenterProtocol?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +22,7 @@ class MainViewController: UIViewController {
     }
 }
 
-
-
-//  MARK: EXTENSION
+//  MARK: MainViewControllerProtocol
 extension MainViewController: MainViewControllerProtocol {
     
 }

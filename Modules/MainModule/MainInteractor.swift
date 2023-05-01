@@ -8,6 +8,7 @@
 import Foundation
 
 protocol MainInteractorProtocol: AnyObject{
+    
 }
 
 class MainInteractor {
@@ -15,7 +16,7 @@ class MainInteractor {
     
 }
 
-//  MARK: EXTENSION
+//  MARK: MainInteractorProtocol
 extension MainInteractor: MainInteractorProtocol {
     
 }

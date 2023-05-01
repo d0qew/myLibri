@@ -8,7 +8,6 @@
 import UIKit
 
 class MainAssembly{
-   
     static func configure() -> UIViewController {
         let interactor = MainInteractor()
         let router = MainRouter()
