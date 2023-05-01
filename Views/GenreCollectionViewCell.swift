@@ -14,7 +14,7 @@ class GenreCollectionViewCell: UICollectionViewCell {
     var title: UILabel = {
         let textLabel = UILabel()
         textLabel.textColor = UIColor.white
-        textLabel.font = UIFont(name: "Menlo", size: 20)
+        textLabel.font = UIFont(name: "Menlo", size: 12)
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         
         return textLabel
@@ -36,21 +36,18 @@ class GenreCollectionViewCell: UICollectionViewCell {
     
     private func initialize() {
         backgroundColor = UIColor.clear
-//        layer.cornerRadius = 15
-//        layer.borderColor = UIColor.white.cgColor
-//        layer.borderWidth = 3
         
         addSubview(imageView)
         imageView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(5)
+            make.leading.equalToSuperview().inset(0)
             make.bottom.equalToSuperview().inset(5)
-            make.size.equalTo(100)
+            make.size.equalTo(200)
         }
        
         addSubview(title)
         title.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(5)
-            make.top.equalTo(imageView).inset(5)
+            make.centerX.equalTo(imageView.snp.centerX)
+            make.centerY.equalTo(imageView.snp.centerY)
         }
     }
     

@@ -12,6 +12,7 @@ class GenreCollectionView: UICollectionView {
     var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 10000
         return layout
     }()
     
@@ -21,7 +22,6 @@ class GenreCollectionView: UICollectionView {
         setDataSource()
         backgroundColor = UIColor.clear
         register(GenreCollectionViewCell.self, forCellWithReuseIdentifier: GenreCollectionViewCell.reuseId)
-        translatesAutoresizingMaskIntoConstraints = false
         alwaysBounceHorizontal = true
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
@@ -47,7 +47,9 @@ extension GenreCollectionView: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = UICollectionViewCell()
+        let cell = dequeueReusableCell(withReuseIdentifier: GenreCollectionViewCell.reuseId, for: indexPath) as! GenreCollectionViewCell
+        cell.imageView.image = cells[indexPath.row].image
+        cell.title.text = cells[indexPath.row].title
         return cell
     }
 }
