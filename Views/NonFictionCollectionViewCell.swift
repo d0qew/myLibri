@@ -1,20 +1,20 @@
 //
-//  GenreCollectionViewCell.swift
+//  NonFictionCollectionViewCell.swift
 //  myLibri
 //
-//  Created by Daniil Konashenko on 29.04.2023.
+//  Created by Daniil Konashenko on 02.05.2023.
 //
 
 import UIKit
 import SnapKit
 
-class GenreCollectionViewCell: UICollectionViewCell {
-    static let reuseId = "GenreCollectionViewCell"
+class NonFictionCollectionViewCell: UICollectionViewCell {
+    static let reuseId = "NonFictionCollectionViewCell"
     
     var title: UILabel = {
         let textLabel = UILabel()
-        textLabel.textColor = UIColor.white
-        textLabel.font = UIFont(name: "Menlo", size: 12)
+        textLabel.textColor = UIColor.black
+        textLabel.font = UIFont(name: "Menlo-Bold", size: 10)
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         
         return textLabel
@@ -35,13 +35,16 @@ class GenreCollectionViewCell: UICollectionViewCell {
     }
     
     private func initialize() {
-        backgroundColor = UIColor.clear
+        backgroundColor = UIColor.green
         
         addSubview(imageView)
         imageView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(0)
-            make.bottom.equalToSuperview().inset(5)
-            make.size.equalTo(200)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.width.equalTo(StructScreenSize().screenWidth * 0.3)
+            make.height.equalTo(StructScreenSize().screenHeight / 5)
         }
        
         addSubview(title)
