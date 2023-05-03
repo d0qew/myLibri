@@ -23,7 +23,8 @@ class MainViewController: UIViewController {
         title = "Главная"
         view.backgroundColor = .white
         configureCollectionView()
-//        presenter?.viewDidLoaded()
+        
+        //        presenter?.viewDidLoaded()
         
     }
     
@@ -33,15 +34,14 @@ class MainViewController: UIViewController {
 extension MainViewController: MainViewControllerProtocol {
     func showCollectionView() {
         self.updateDate()
-       
+        
     }
     
     private func updateDate() {
         collectionView.reloadData()
     }
-    
-   
 }
+
 //  MARK: - Layout
 extension MainViewController {
     
@@ -52,25 +52,42 @@ extension MainViewController {
             switch section {
             case .artisticLiterature:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-                
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalWidth(0.9 * 0.15))
-                
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.9 * 0.6))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                
                 let section = NSCollectionLayoutSection(group: group)
-                
                 section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
                 section.interGroupSpacing = 10
-                section.contentInsets = .init(top: 0, leading: 15, bottom: 0, trailing: 15)
+                section.contentInsets = .init(top: 5, leading: 15, bottom: 15, trailing: 15)
                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
                 
                 return section
+                
             case .nonFiction:
-                return nil
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.9 * 0.6))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+                let section = NSCollectionLayoutSection(group: group)
+                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+                section.interGroupSpacing = 10
+                section.contentInsets = .init(top: 5, leading: 15, bottom: 15, trailing: 15)
+                section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
+                
+                return section
+                
             case .childrenLiterature:
-                return nil
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.9 * 0.6))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+                let section = NSCollectionLayoutSection(group: group)
+                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+                section.interGroupSpacing = 10
+                section.contentInsets = .init(top: 5, leading: 15, bottom: 15, trailing: 15)
+                section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
+                
+                return section
             }
         }
     }
@@ -90,9 +107,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor.clear
-//        collectionView.alwaysBounceHorizontal = true
-//        collectionView.showsHorizontalScrollIndicator = false
-//        collectionView.showsVerticalScrollIndicator = false
+        //        collectionView.alwaysBounceHorizontal = true
+        //        collectionView.showsHorizontalScrollIndicator = false
+        //        collectionView.showsVerticalScrollIndicator = false
         
         collectionView.register(ArtisticLiteratureCollectionViewCell.self, forCellWithReuseIdentifier: ArtisticLiteratureCollectionViewCell.reuseId)
         collectionView.register(NonFictionCollectionViewCell.self, forCellWithReuseIdentifier: NonFictionCollectionViewCell.reuseId)
@@ -100,19 +117,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         collectionView.register(GenreCollectionViewHeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: GenreCollectionViewHeaderReusableView.reuseId)
         
         view.addSubview(collectionView)
-        NSLayoutConstraint.activate([
-             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-           ])
-        
-//        collectionView.snp.makeConstraints { make in
-//            make.top.equalToSuperview().inset(StructScreenSize().screenHeight / 6)
-//            make.left.equalToSuperview().inset((StructScreenSize().screenWidth - 330) / 5)
-//            make.right.equalToSuperview().inset((StructScreenSize().screenWidth - 330) / 5
-//            make.bottom.equalToSuperview()
-//        }
+        collectionView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -127,17 +137,17 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         switch sections[indexPath.section] {
         case .artisticLiterature(let items):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArtisticLiteratureCollectionViewCell.reuseId, for: indexPath) as! ArtisticLiteratureCollectionViewCell
-            cell.imageView = UIImageView(image: UIImage(named: items[indexPath.row].image))
+            cell.imageView.image = items[indexPath.row].image
             cell.title.text = items[indexPath.row].title
             return cell
         case .nonFiction(let items):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NonFictionCollectionViewCell.reuseId, for: indexPath) as! NonFictionCollectionViewCell
-            cell.imageView = UIImageView(image: UIImage(named: items[indexPath.row].image))
+            cell.imageView.image = items[indexPath.row].image
             cell.title.text = items[indexPath.row].title
             return cell
         case .childrenLiterature(let items):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChildrenLiteratureCollectionViewCell.reuseId, for: indexPath) as! ChildrenLiteratureCollectionViewCell
-            cell.imageView = UIImageView(image: UIImage(named: items[indexPath.row].image))
+            cell.imageView.image = items[indexPath.row].image
             cell.title.text = items[indexPath.row].title
             return cell
         }

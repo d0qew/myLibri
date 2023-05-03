@@ -35,7 +35,7 @@ class NonFictionCollectionViewCell: UICollectionViewCell {
     }
     
     private func initialize() {
-        backgroundColor = UIColor.green
+        backgroundColor = UIColor.clear
         
         addSubview(imageView)
         imageView.snp.makeConstraints { make in
