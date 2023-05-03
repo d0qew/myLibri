@@ -18,7 +18,7 @@ class LibraryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Библиотека"
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         presenter?.viewDidLoaded()
     }
 }

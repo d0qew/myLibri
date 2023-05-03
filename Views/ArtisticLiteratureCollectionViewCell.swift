@@ -14,7 +14,11 @@ class ArtisticLiteratureCollectionViewCell: UICollectionViewCell {
     var title: UILabel = {
         let textLabel = UILabel()
         textLabel.textColor = UIColor.black
-        textLabel.font = UIFont(name: "Menlo-Bold", size: 10)
+        textLabel.textAlignment = .center
+        textLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        textLabel.numberOfLines = 0
+        textLabel.adjustsFontSizeToFitWidth = false
+        textLabel.lineBreakMode = .byClipping
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         
         return textLabel
@@ -35,22 +39,22 @@ class ArtisticLiteratureCollectionViewCell: UICollectionViewCell {
     }
     
     private func initialize() {
-        backgroundColor = UIColor.clear
+        backgroundColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1 )
+        layer.cornerRadius = 15
         
         addSubview(imageView)
         imageView.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.width.equalTo(StructScreenSize().screenWidth * 0.3)
-            make.height.equalTo(StructScreenSize().screenHeight / 5)
+            make.centerX.equalToSuperview().inset(5)
+            make.centerY.equalToSuperview().inset(5)
+            make.size.equalTo(StructScreenSize().screenWidth * 0.3)
         }
        
         addSubview(title)
         title.snp.makeConstraints { make in
-            make.centerX.equalTo(imageView.snp.centerX)
-            make.centerY.equalTo(imageView.snp.centerY)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.top.equalTo(imageView.snp.bottom).offset(5)
+            make.bottom.equalToSuperview()
         }
     }
     

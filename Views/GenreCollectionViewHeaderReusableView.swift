@@ -13,8 +13,8 @@ class GenreCollectionViewHeaderReusableView: UICollectionReusableView {
     
     var title: UILabel = {
         let title = UILabel()
-        title.textColor = .black
-        title.font = UIFont(name: "avenir", size: 20)
+        title.textColor = .label
+        title.font = UIFont.boldSystemFont(ofSize: 20)
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
