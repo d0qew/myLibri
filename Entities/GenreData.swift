@@ -1,50 +1,12 @@
 //
-//  GenreForView.swift
+//  GenreData.swift
 //  myLibri
 //
-//  Created by Daniil Konashenko on 29.04.2023.
+//  Created by Daniil Konashenko on 04.05.2023.
 //
 
 import UIKit
 
-// MARK: - ListItem
-struct ListItem {
-    let title: String
-    let image: UIImage?
-}
-
-// MARK: - ListSection
-enum ListSection {
-    case artisticLiterature([ListItem])
-    case nonFiction([ListItem])
-    case childrenLiterature([ListItem])
-    
-    var items: [ListItem] {
-        switch self {
-        case .artisticLiterature(let items),
-                .nonFiction(let items),
-                .childrenLiterature(let items):
-            return items
-        }
-    }
-    
-    var count: Int {
-        return items.count
-    }
-    
-    var title: String {
-        switch self {
-        case .artisticLiterature:
-            return "Художественная литература"
-        case .nonFiction:
-            return "Нон-фикшен"
-        case .childrenLiterature:
-            return "Детская литература"
-        }
-    }
-}
-
-// MARK: - GenreData
 struct GenreData {
     static let shared = GenreData()
     
@@ -91,4 +53,3 @@ struct GenreData {
         [artisticLiterature, nonFiction, childrenLiterature]
     }
 }
-
