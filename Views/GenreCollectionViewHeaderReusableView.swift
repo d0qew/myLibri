@@ -16,16 +16,23 @@ class GenreCollectionViewHeaderReusableView: UICollectionReusableView {
         title.textColor = .label
         title.font = UIFont.boldSystemFont(ofSize: 20)
         title.translatesAutoresizingMaskIntoConstraints = false
+        
         return title
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        setupConstraints()
+        setupLayouts()
     }
     
-    private func setupConstraints() {
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - Setup Layouts
+extension GenreCollectionViewHeaderReusableView {
+    private func setupLayouts() {
         addSubview(title)
         title.snp.makeConstraints { make in
             make.leading.equalToSuperview()
@@ -33,9 +40,5 @@ class GenreCollectionViewHeaderReusableView: UICollectionReusableView {
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
         }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

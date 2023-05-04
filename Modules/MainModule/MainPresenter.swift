@@ -25,6 +25,6 @@ class MainPresenter {
 //  MARK: MainPresenterProtocol
 extension MainPresenter: MainPresenterProtocol {
     func viewDidLoaded() {
-        view?.showCollectionView()
+       
     }
 }

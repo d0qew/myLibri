@@ -23,11 +23,8 @@ class MainViewController: UIViewController {
         title = "Главная"
         view.backgroundColor = .systemBackground
         configureCollectionView()
-        
-        //        presenter?.viewDidLoaded()
-        
+        presenter?.viewDidLoaded()
     }
-    
 }
 
 //  MARK: - MainViewControllerProtocol
@@ -107,9 +104,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor.clear
-        //        collectionView.alwaysBounceHorizontal = true
-        //        collectionView.showsHorizontalScrollIndicator = false
-        //        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
         
         collectionView.register(ArtisticLiteratureCollectionViewCell.self, forCellWithReuseIdentifier: ArtisticLiteratureCollectionViewCell.reuseId)
         collectionView.register(NonFictionCollectionViewCell.self, forCellWithReuseIdentifier: NonFictionCollectionViewCell.reuseId)

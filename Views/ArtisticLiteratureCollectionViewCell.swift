@@ -35,11 +35,19 @@ class ArtisticLiteratureCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        initialize()
+        setupLayouts()
     }
     
-    private func initialize() {
-        backgroundColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1 )
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - setup Layouts
+extension ArtisticLiteratureCollectionViewCell {
+    
+    private func setupLayouts() {
+        backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 0.7 )
         layer.cornerRadius = 15
         
         addSubview(imageView)
@@ -56,9 +64,5 @@ class ArtisticLiteratureCollectionViewCell: UICollectionViewCell {
             make.top.equalTo(imageView.snp.bottom).offset(5)
             make.bottom.equalToSuperview()
         }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
