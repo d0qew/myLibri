@@ -52,7 +52,7 @@ extension NonFictionCollectionViewCell {
         addSubview(imageView)
         imageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-20)
             make.size.equalTo(StructScreenSize().screenWidth * 0.3)
         }
        

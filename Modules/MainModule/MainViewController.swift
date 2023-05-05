@@ -15,7 +15,6 @@ protocol MainViewControllerProtocol: AnyObject {
 class MainViewController: UIViewController {
     var presenter: MainPresenterProtocol?
     var collectionView: UICollectionView! = nil
-    
     var sections = GenreData.shared.pageData
     
     override func viewDidLoad() {
@@ -41,7 +40,6 @@ extension MainViewController: MainViewControllerProtocol {
 
 //  MARK: - Layout
 extension MainViewController {
-    
     func createLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
             guard let self = self else { return nil }
@@ -50,40 +48,37 @@ extension MainViewController {
             case .artisticLiterature:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.9 * 0.6))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.9 * 0.5))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
                 section.interGroupSpacing = 10
                 section.contentInsets = .init(top: 5, leading: 15, bottom: 15, trailing: 15)
                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
-                
                 return section
                 
             case .nonFiction:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.9 * 0.6))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.9 * 0.5))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
                 section.interGroupSpacing = 10
                 section.contentInsets = .init(top: 5, leading: 15, bottom: 15, trailing: 15)
                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
-                
                 return section
                 
             case .childrenLiterature:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.9 * 0.6))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.9 * 0.5))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
                 section.interGroupSpacing = 10
                 section.contentInsets = .init(top: 5, leading: 15, bottom: 15, trailing: 15)
                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
-                
                 return section
             }
         }
@@ -96,7 +91,6 @@ extension MainViewController {
 
 //  MARK: - Setup Collection View
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
     func configureCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
@@ -136,11 +130,13 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.imageView.image = items[indexPath.row].image
             cell.title.text = items[indexPath.row].title
             return cell
+            
         case .nonFiction(let items):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NonFictionCollectionViewCell.reuseId, for: indexPath) as! NonFictionCollectionViewCell
             cell.imageView.image = items[indexPath.row].image
             cell.title.text = items[indexPath.row].title
             return cell
+            
         case .childrenLiterature(let items):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChildrenLiteratureCollectionViewCell.reuseId, for: indexPath) as! ChildrenLiteratureCollectionViewCell
             cell.imageView.image = items[indexPath.row].image
