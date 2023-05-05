@@ -11,7 +11,12 @@ protocol LibraryRouterProtocol: AnyObject {
     
 }
 
-class LibraryRouter: LibraryRouterProtocol{
+class LibraryRouter {
     weak var view: LibraryViewControllerProtocol?
+    
+}
+
+//MARK: - LibraryRouterProtocol
+extension LibraryRouter: LibraryRouterProtocol {
     
 }

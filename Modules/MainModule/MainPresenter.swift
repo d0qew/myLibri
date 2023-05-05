@@ -22,7 +22,7 @@ class MainPresenter {
     }
 }
 
-//  MARK: MainPresenterProtocol
+//  MARK: - MainPresenterProtocol
 extension MainPresenter: MainPresenterProtocol {
     func viewDidLoaded() {
        

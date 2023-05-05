@@ -16,7 +16,7 @@ class LibraryInteractor {
     
 }
 
-//  MARK: LibraryInteractorProtocol
+//  MARK: - LibraryInteractorProtocol
 extension LibraryInteractor: LibraryInteractorProtocol {
     
 }

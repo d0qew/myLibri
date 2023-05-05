@@ -11,6 +11,11 @@ protocol MainRouterProtocol: AnyObject {
     
 }
 
-class MainRouter: MainRouterProtocol{
+class MainRouter {
     weak var view: MainViewControllerProtocol?
+}
+
+//MARK: - MainRouterProtocol
+extension MainRouter: MainRouterProtocol {
+    
 }

@@ -16,7 +16,7 @@ class MainInteractor {
     
 }
 
-//  MARK: MainInteractorProtocol
+//  MARK: - MainInteractorProtocol
 extension MainInteractor: MainInteractorProtocol {
     
 }
