@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 protocol MainViewControllerProtocol: AnyObject {
-    func showCollectionView()
 }
 
 class MainViewController: UIViewController {
@@ -28,14 +27,6 @@ class MainViewController: UIViewController {
 
 //  MARK: - MainViewControllerProtocol
 extension MainViewController: MainViewControllerProtocol {
-    func showCollectionView() {
-        self.updateDate()
-        
-    }
-    
-    private func updateDate() {
-        collectionView.reloadData()
-    }
 }
 
 //  MARK: - Layout
