@@ -46,7 +46,7 @@ class ChildrenLiteratureCollectionViewCell: UICollectionViewCell {
 // MARK: - setup Layouts
 extension ChildrenLiteratureCollectionViewCell {
     private func setupLayouts() {
-        backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 0.7 )
+        backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1 )
         layer.cornerRadius = 15
         
         addSubview(imageView)
