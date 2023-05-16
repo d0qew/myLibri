@@ -7,8 +7,8 @@
 import UIKit
 
 class GenreAssembly{
-    static func configure() -> UIViewController {
-        let interactor = GenreInteractor()
+    static func configure(title: String) -> UIViewController {
+        let interactor = GenreInteractor(title: title)
         let router = GenreRouter()
         let presenter = GenrePresenter(router: router, interactor: interactor)
         let view = GenreViewController()

@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol GenreViewControllerProtocol: AnyObject {
-    
+    func updateView(with title: String)
 }
 
 class GenreViewController: UIViewController {
@@ -26,5 +26,7 @@ class GenreViewController: UIViewController {
 
 // MARK: - GenreViewControllerProtocol
 extension GenreViewController: GenreViewControllerProtocol {
-    
+    func updateView(with title: String) {
+        self.title = title
+    }
 }

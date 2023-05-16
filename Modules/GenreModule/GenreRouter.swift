@@ -12,7 +12,7 @@ protocol GenreRouterProtocol: AnyObject {
 }
 
 class GenreRouter {
-    weak var view: GenreViewControllerProtocol?
+    weak var view: GenreViewController?
     
 }
 

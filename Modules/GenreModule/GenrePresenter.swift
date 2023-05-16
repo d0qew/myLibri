@@ -9,6 +9,7 @@ import Foundation
 
 protocol GenrePresenterProtocol: AnyObject {
     func viewDidLoaded()
+    func booksLoaded(with title: String)
 }
 
 class GenrePresenter {
@@ -25,6 +26,10 @@ class GenrePresenter {
 // MARK: - GenrePresenterProtocol
 extension GenrePresenter: GenrePresenterProtocol {
     func viewDidLoaded() {
-        print("view did loaded")
+        interactor.getBooks()
+    }
+    
+    func booksLoaded(with title: String) {
+        view?.updateView(with: title)
     }
 }

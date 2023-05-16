@@ -25,6 +25,5 @@ class LibraryPresenter {
 //  MARK: - LibraryPresenterProtocol
 extension LibraryPresenter: LibraryPresenterProtocol {
     func viewDidLoaded() {
-        print("view did loaded")
     }
 }

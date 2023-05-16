@@ -8,14 +8,17 @@
 import UIKit
 
 protocol MainRouterProtocol: AnyObject {
-    
+    func openGenre(with title: String)
 }
 
 class MainRouter {
-    weak var view: MainViewControllerProtocol?
+    weak var view: MainViewController?
 }
 
 //MARK: - MainRouterProtocol
 extension MainRouter: MainRouterProtocol {
-    
+    func openGenre(with title: String) {
+        let vc = GenreAssembly.configure(title: title)
+        view?.navigationController?.pushViewController(vc, animated: true)
+    }
 }

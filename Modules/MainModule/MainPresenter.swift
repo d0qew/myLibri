@@ -9,6 +9,7 @@ import Foundation
 
 protocol MainPresenterProtocol: AnyObject {
     func viewDidLoaded()
+    func didselectItem(with title: String)
 }
 
 class MainPresenter {
@@ -27,4 +28,9 @@ extension MainPresenter: MainPresenterProtocol {
     func viewDidLoaded() {
        
     }
+    
+    func didselectItem(with title: String) {
+        router.openGenre(with: title)
+    }
+
 }

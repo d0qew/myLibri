@@ -146,4 +146,20 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return UICollectionReusableView()
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        switch sections[indexPath.section] {
+        case .artisticLiterature(let items):
+            let titleGenre = items[indexPath.row].title
+            presenter?.didselectItem(with: titleGenre)
+        case .nonFiction(let items):
+            let titleGenre = items[indexPath.row].title
+            presenter?.didselectItem(with: titleGenre)
+        case .childrenLiterature(let items):
+            let titleGenre = items[indexPath.row].title
+            presenter?.didselectItem(with: titleGenre)
+            
+        }
+    }
 }

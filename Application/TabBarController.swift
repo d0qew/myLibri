@@ -27,7 +27,9 @@ class TabBarController: UITabBarController {
         let navigationVC = UINavigationController(rootViewController: viewController)
         navigationVC.navigationBar.barStyle = .default
         navigationVC.navigationBar.prefersLargeTitles = true
+        navigationVC.navigationItem.largeTitleDisplayMode = .automatic
         
         return navigationVC
     }
 }
+
