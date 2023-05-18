@@ -47,13 +47,13 @@ class ChildrenLiteratureCollectionViewCell: UICollectionViewCell {
 extension ChildrenLiteratureCollectionViewCell {
     private func setupLayouts() {
         backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1 )
-        layer.cornerRadius = 15
+        layer.cornerRadius = 12
         
         addSubview(imageView)
         imageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(-20)
-            make.size.equalTo(StructScreenSize().screenWidth * 0.3)
+            make.size.equalTo(StructScreenSize.shared.screenWidth * 0.3)
         }
        
         addSubview(title)

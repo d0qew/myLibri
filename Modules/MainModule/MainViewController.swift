@@ -32,7 +32,7 @@ extension MainViewController: MainViewControllerProtocol {
 
 //  MARK: - Layout
 extension MainViewController {
-    func createLayout() -> UICollectionViewCompositionalLayout {
+    private func createLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
             guard let self = self else { return nil }
             let section = self.sections[sectionIndex]
@@ -83,7 +83,7 @@ extension MainViewController {
 
 //  MARK: - Setup Collection View
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func configureCollectionView() {
+    private func configureCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -100,11 +100,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
-        }
+            make.edges.equalToSuperview()
+            }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -153,13 +150,13 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         switch sections[indexPath.section] {
         case .artisticLiterature(let items):
             let titleGenre = items[indexPath.row].title
-            presenter?.didselectItem(with: titleGenre)
+            presenter?.didSelectItem(with: titleGenre)
         case .nonFiction(let items):
             let titleGenre = items[indexPath.row].title
-            presenter?.didselectItem(with: titleGenre)
+            presenter?.didSelectItem(with: titleGenre)
         case .childrenLiterature(let items):
             let titleGenre = items[indexPath.row].title
-            presenter?.didselectItem(with: titleGenre)
+            presenter?.didSelectItem(with: titleGenre)
             
         }
     }

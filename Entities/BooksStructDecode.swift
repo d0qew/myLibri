@@ -7,6 +7,7 @@
 
 import Foundation
 
+// for getBooks
 struct Books: Decodable {
     let content: [Book]
     let totalPages: Int
@@ -30,4 +31,9 @@ struct Author: Decodable {
 struct Genre: Decodable {
     let id: Int
     let name: String
+}
+
+// for getGenres
+struct Genres: Decodable {
+    let content: [Genre]
 }

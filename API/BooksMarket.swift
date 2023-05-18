@@ -24,12 +24,32 @@ public final class BooksMarket {
             }
             do {
                 let booksJSON = try JSONDecoder().decode(Books.self, from: data)
-                print(data)
                 completion(booksJSON)
             }catch {
                 print("--Error JSON decode \(error.localizedDescription)")
             }
         }.resume()
     }
+    
+    func getGeners(completion: @escaping (Genres) -> Void) {
+        let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4NDQwMjM0NSwiZXhwIjoxNjg0NDQ1NTQ1fQ.gEBRbHNa0DvriIEBIPX2EKLeSwRexapWddAwrNq2MnY"
+        guard let url = URL(string: "http://localhost:8080/api/genres") else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.setValue("Bearer \(token)",
+                         forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data else {
+                return
+            }
+            do {
+                let genreJSON = try JSONDecoder().decode(Genres.self, from: data)
+                completion(genreJSON)
+            }catch {
+                print("--Error JSON decode \(error.localizedDescription)")
+            }
+        }.resume()
+    }
+    
 }
-

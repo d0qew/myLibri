@@ -14,15 +14,25 @@ protocol GenreInteractorProtocol: AnyObject{
 class GenreInteractor {
     weak var presenter: GenrePresenterProtocol?
     let title: String
+    let idGenre: Int?
 
-    init(title: String) {
+    init(title: String, idGenre: Int?) {
         self.title = title
+        self.idGenre = idGenre
     }
 }
 
 // MARK: - GenreInteractorProtocol
 extension GenreInteractor: GenreInteractorProtocol {
     func getBooks() {
-        presenter?.booksLoaded(with: title)
+        presenter?.titleLoaded(with: title)
+        
+        if idGenre != nil {
+            DispatchQueue.main.async {
+                BooksMarket.shared.getBooks(with: self.idGenre!) { books in
+                    self.presenter?.booksLoaded(books: books.content)
+                }
+            }
+        }
     }
 }

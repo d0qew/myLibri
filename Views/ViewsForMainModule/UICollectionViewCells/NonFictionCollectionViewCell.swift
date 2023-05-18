@@ -1,15 +1,15 @@
 //
-//  ArtisticLiteratureCollectionViewCell.swift
+//  NonFictionCollectionViewCell.swift
 //  myLibri
 //
-//  Created by Daniil Konashenko on 29.04.2023.
+//  Created by Daniil Konashenko on 02.05.2023.
 //
 
 import UIKit
 import SnapKit
 
-class ArtisticLiteratureCollectionViewCell: UICollectionViewCell {
-    static let reuseId = "ArtisticLiteratureCollectionViewCell"
+class NonFictionCollectionViewCell: UICollectionViewCell {
+    static let reuseId = "NonFictionCollectionViewCell"
     
     var title: UILabel = {
         let textLabel = UILabel()
@@ -44,23 +44,22 @@ class ArtisticLiteratureCollectionViewCell: UICollectionViewCell {
 }
 
 // MARK: - setup Layouts
-extension ArtisticLiteratureCollectionViewCell {
-    
+extension NonFictionCollectionViewCell {
     private func setupLayouts() {
         backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1 )
-        layer.cornerRadius = 15
+        layer.cornerRadius = 12
         
         addSubview(imageView)
         imageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(-20)
-            make.size.equalTo(StructScreenSize().screenWidth * 0.3)
+            make.size.equalTo(StructScreenSize.shared.screenWidth * 0.3)
         }
        
         addSubview(title)
         title.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
+            make.leading.equalToSuperview().inset(5)
+            make.trailing.equalToSuperview().inset(5)
             make.top.equalTo(imageView.snp.bottom).offset(5)
             make.bottom.equalToSuperview()
         }

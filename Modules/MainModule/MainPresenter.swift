@@ -9,13 +9,16 @@ import Foundation
 
 protocol MainPresenterProtocol: AnyObject {
     func viewDidLoaded()
-    func didselectItem(with title: String)
+    func didSelectItem(with title: String)
+    func genresLoaded(with dict: [String : Int])
 }
 
 class MainPresenter {
     weak var view: MainViewControllerProtocol?
     var router: MainRouterProtocol
     var interactor: MainInteractor
+    
+    var genresDictionary: [String : Int] = [:]
     
     init(router: MainRouterProtocol, interactor: MainInteractor) {
         self.router = router
@@ -26,10 +29,15 @@ class MainPresenter {
 //  MARK: - MainPresenterProtocol
 extension MainPresenter: MainPresenterProtocol {
     func viewDidLoaded() {
+        interactor.getGenres()
     }
     
-    func didselectItem(with title: String) {
-        router.openGenre(with: title)
+    func didSelectItem(with title: String) {
+        let idGenre = genresDictionary[title]
+        router.openGenre(with: title, idGenre: idGenre)
     }
-
+    
+    func genresLoaded(with dict: [String : Int]) {
+        genresDictionary = dict
+    }
 }
