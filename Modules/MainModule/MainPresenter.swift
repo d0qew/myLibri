@@ -26,7 +26,6 @@ class MainPresenter {
 //  MARK: - MainPresenterProtocol
 extension MainPresenter: MainPresenterProtocol {
     func viewDidLoaded() {
-       
     }
     
     func didselectItem(with title: String) {

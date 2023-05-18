@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 protocol MainViewControllerProtocol: AnyObject {
+    
 }
 
 class MainViewController: UIViewController {
