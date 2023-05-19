@@ -92,6 +92,8 @@ extension GenreViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        let infoBook = cells[indexPath.row]
+        presenter?.didSelectItem(with: infoBook)
     }
 }
 

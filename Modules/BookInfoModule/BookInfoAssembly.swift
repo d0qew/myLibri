@@ -8,8 +8,8 @@
 import UIKit
 
 class BookInfoAssembly{
-    static func configure() -> UIViewController {
-        let interactor = BookInfoInteractor()
+    static func configure(book: Book) -> UIViewController {
+        let interactor = BookInfoInteractor(book: book)
         let router = BookInfoRouter()
         let presenter = BookInfoPresenter(router: router, interactor: interactor)
         let view = BookInfoViewController()

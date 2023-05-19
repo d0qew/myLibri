@@ -76,7 +76,7 @@ extension MainViewController {
         }
     }
     
-    func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         .init(layoutSize:.init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
     }
 }

@@ -5,10 +5,12 @@
 //  Created by Daniil Konashenko on 19.05.2023.
 //
 
-import Foundation
+import UIKit
 
 protocol BookInfoPresenterProtocol: AnyObject {
     func viewDidLoaded()
+    func bookLoaded(book: Book)
+    func imageLoaded(image: UIImage?)
 }
 
 class BookInfoPresenter {
@@ -25,5 +27,13 @@ class BookInfoPresenter {
 //  MARK: - BookInfoPresenterProtocol
 extension BookInfoPresenter: BookInfoPresenterProtocol {
     func viewDidLoaded() {
+        interactor.getInfoBook()
+    }
+    
+    func bookLoaded(book: Book) {
+        view?.updateInfoBook(book: book)
+    }
+    func imageLoaded(image: UIImage?) {
+        view?.updateImage(image: image)
     }
 }

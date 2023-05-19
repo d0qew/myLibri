@@ -8,7 +8,7 @@
 import UIKit
 
 protocol GenreRouterProtocol: AnyObject {
-    
+    func openBook(with book: Book)
 }
 
 class GenreRouter {
@@ -18,5 +18,8 @@ class GenreRouter {
 
 // MARK: - GenreRouterProtocol
 extension GenreRouter: GenreRouterProtocol {
-    
+    func openBook(with book: Book) {
+        let vc = BookInfoAssembly.configure(book: book)
+        view?.navigationController?.pushViewController(vc, animated: true)
+    }
 }

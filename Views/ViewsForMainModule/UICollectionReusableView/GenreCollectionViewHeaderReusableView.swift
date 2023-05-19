@@ -15,7 +15,6 @@ class GenreCollectionViewHeaderReusableView: UICollectionReusableView {
         let title = UILabel()
         title.textColor = .label
         title.font = UIFont.boldSystemFont(ofSize: 20)
-        title.translatesAutoresizingMaskIntoConstraints = false
         
         return title
     }()

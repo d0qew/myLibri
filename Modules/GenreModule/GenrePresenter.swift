@@ -12,6 +12,7 @@ protocol GenrePresenterProtocol: AnyObject {
     func viewDidLoaded()
     func titleLoaded(with title: String)
     func booksLoaded(books: [Book])
+    func didSelectItem(with book: Book)
 }
 
 class GenrePresenter {
@@ -27,6 +28,10 @@ class GenrePresenter {
 
 // MARK: - GenrePresenterProtocol
 extension GenrePresenter: GenrePresenterProtocol {
+    func viewDidLoaded() {
+        interactor.getBooks()
+    }
+
     func titleLoaded(with title: String) {
         self.view?.updateView(with: title)
     }
@@ -35,7 +40,7 @@ extension GenrePresenter: GenrePresenterProtocol {
         self.view?.updateCollectionView(with: books)
     }
     
-    func viewDidLoaded() {
-        interactor.getBooks()
+    func didSelectItem(with book: Book) {
+        router.openBook(with: book)
     }
 }
