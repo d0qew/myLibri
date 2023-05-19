@@ -10,8 +10,9 @@ import Foundation
 
 public final class BooksMarket {
     static let shared = BooksMarket()
+    
     func getBooks(with idGenre: Int, completion: @escaping (Books) -> Void) {
-        let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4NDQwMjM0NSwiZXhwIjoxNjg0NDQ1NTQ1fQ.gEBRbHNa0DvriIEBIPX2EKLeSwRexapWddAwrNq2MnY"
+        let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4NDUwODM1MiwiZXhwIjoxNjg0NTUxNTUyfQ.4w_Huoo62FkK0ZMctp8Xh-Ddw6MvT9sSf_iZi-c8hcI"
         guard let url = URL(string: "http://localhost:8080/api/books?page=0&size=5&genre_ids=\(idGenre)") else {
             return
         }
@@ -32,7 +33,7 @@ public final class BooksMarket {
     }
     
     func getGeners(completion: @escaping (Genres) -> Void) {
-        let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4NDQwMjM0NSwiZXhwIjoxNjg0NDQ1NTQ1fQ.gEBRbHNa0DvriIEBIPX2EKLeSwRexapWddAwrNq2MnY"
+        let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4NDUwODM1MiwiZXhwIjoxNjg0NTUxNTUyfQ.4w_Huoo62FkK0ZMctp8Xh-Ddw6MvT9sSf_iZi-c8hcI"
         guard let url = URL(string: "http://localhost:8080/api/genres") else {
             return
         }
