@@ -11,6 +11,7 @@ protocol BookInfoPresenterProtocol: AnyObject {
     func viewDidLoaded()
     func bookLoaded(book: Book)
     func imageLoaded(image: UIImage?)
+    func buttonTapped()
 }
 
 class BookInfoPresenter {
@@ -35,5 +36,9 @@ extension BookInfoPresenter: BookInfoPresenterProtocol {
     }
     func imageLoaded(image: UIImage?) {
         view?.updateImage(image: image)
+    }
+    
+    func buttonTapped() {
+        interactor.dowloadBook()
     }
 }

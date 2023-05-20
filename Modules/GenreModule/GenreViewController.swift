@@ -87,6 +87,7 @@ extension GenreViewController: UICollectionViewDelegate, UICollectionViewDataSou
         cell.title.text = cells[indexPath.row].name
         cell.authors.text = cells[indexPath.row].authors[0].first_name + " " + cells[indexPath.row].authors[0].last_name
         cell.imageView.image = UIImage(named: "book")
+        
         return cell
     }
     

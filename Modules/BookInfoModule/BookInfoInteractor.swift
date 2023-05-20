@@ -5,7 +5,7 @@
 //  Created by Daniil Konashenko on 19.05.2023.
 //
 
-import Foundation
+import UIKit
 
 protocol BookInfoInteractorProtocol: AnyObject{
     func getInfoBook()
@@ -25,6 +25,12 @@ extension BookInfoInteractor: BookInfoInteractorProtocol {
         presenter?.bookLoaded(book: book)
         BooksMarket.shared.getImage(idBook: self.book.id) { image in
             self.presenter?.imageLoaded(image: image)
+        }
+    }
+    
+    func dowloadBook() {
+        BooksMarket.shared.dowloadBook(idBook: self.book.id) { data in
+            print(data)
         }
     }
 }
