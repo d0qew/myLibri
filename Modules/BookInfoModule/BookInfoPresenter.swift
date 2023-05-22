@@ -27,7 +27,7 @@ class BookInfoPresenter {
 
 //  MARK: - BookInfoPresenterProtocol
 extension BookInfoPresenter: BookInfoPresenterProtocol {
-    func viewDidLoaded() {
+    @MainActor func viewDidLoaded() {
         interactor.getInfoBook()
     }
     
@@ -38,7 +38,7 @@ extension BookInfoPresenter: BookInfoPresenterProtocol {
         view?.updateImage(image: image)
     }
     
-    func buttonTapped() {
+    @MainActor func buttonTapped() {
         interactor.dowloadBook()
     }
 }

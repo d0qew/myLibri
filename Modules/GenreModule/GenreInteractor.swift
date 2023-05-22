@@ -7,10 +7,10 @@
 
 import Foundation
 
-protocol GenreInteractorProtocol: AnyObject{
-    func getBooks()
-}
 
+protocol GenreInteractorProtocol: AnyObject{
+    func getBooks() async
+}
 class GenreInteractor {
     weak var presenter: GenrePresenterProtocol?
     let title: String
@@ -23,15 +23,17 @@ class GenreInteractor {
 }
 
 // MARK: - GenreInteractorProtocol
+@MainActor
 extension GenreInteractor: GenreInteractorProtocol {
-    func getBooks() {
+    func getBooks(){
         presenter?.titleLoaded(with: title)
         
         if idGenre != nil {
-            BooksMarket.shared.getBooks(with: self.idGenre!) { books in
-                self.presenter?.booksLoaded(books: books.content)
-                
+            Task.init {
+                let books = try await BooksMarket.shared.getBooks(with: idGenre!)
+                presenter?.booksLoaded(books: books!.content)
             }
         }
     }
+    
 }

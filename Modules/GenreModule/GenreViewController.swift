@@ -18,22 +18,18 @@ class GenreViewController: UIViewController {
     var collectionView: UICollectionView! = nil
     var cells = [Book]()
     
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         presenter?.viewDidLoaded()
     }
 }
 
-
-
 // MARK: - GenreViewControllerProtocol
 extension GenreViewController: GenreViewControllerProtocol {
     func updateCollectionView(with books: [Book]) {
         set(with: books)
-        DispatchQueue.main.async {
             self.configureCollectionView()
-        }
     }
     
     func updateView(with title: String) {

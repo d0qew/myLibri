@@ -19,10 +19,10 @@ class MainInteractor {
 //  MARK: - MainInteractorProtocol
 extension MainInteractor: MainInteractorProtocol {
     func getGenres() {
-        BooksMarket.shared.getGeners { genres in
+        Task.init {
+            let genres = BooksMarket.shared.getGeners
             var dict: [String: Int] = [:]
-            
-            for genre in genres.content {
+            for genre in try await genres()!.content {
                 dict[genre.name] = genre.id
             }
             

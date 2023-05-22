@@ -54,7 +54,7 @@ class BookInfoViewController: UIViewController {
     private func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-                               
+        
         contentView.addSubview(titleBook)
         titleBook.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -68,7 +68,7 @@ class BookInfoViewController: UIViewController {
         }
         
     }
-
+    
     private func configureViews() {
         titleBook.font = UIFont.boldSystemFont(ofSize: 22)
         titleBook.textAlignment = .left
@@ -177,9 +177,9 @@ extension BookInfoViewController: BookInfoViewControllerProtocol {
     }
     
     func updateImage(image: UIImage?){
-        DispatchQueue.main.async {
-            self.imageViewBook.image = image
-            self.configureImage()
-        }
+        imageViewBook.image = image
+        configureImage()
     }
 }
+
+

@@ -28,7 +28,7 @@ class GenrePresenter {
 
 // MARK: - GenrePresenterProtocol
 extension GenrePresenter: GenrePresenterProtocol {
-    func viewDidLoaded() {
+    @MainActor func viewDidLoaded() {
         interactor.getBooks()
     }
 
