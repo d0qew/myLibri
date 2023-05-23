@@ -8,15 +8,12 @@
 import UIKit
 
 protocol BookInfoRouterProtocol: AnyObject {
-    
 }
 
 class BookInfoRouter {
     weak var view: BookInfoViewController?
-    
 }
 
 // MARK: - BookInfoRouterProtocol
 extension BookInfoRouter: BookInfoRouterProtocol {
-    
 }

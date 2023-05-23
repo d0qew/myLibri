@@ -23,6 +23,7 @@ class GenreViewController: UIViewController {
         view.backgroundColor = .systemBackground
         presenter?.viewDidLoaded()
     }
+    
 }
 
 // MARK: - GenreViewControllerProtocol
@@ -35,6 +36,7 @@ extension GenreViewController: GenreViewControllerProtocol {
     func updateView(with title: String) {
         self.title = title
     }
+    
 }
 
 //  MARK: - Layout
@@ -63,7 +65,8 @@ extension GenreViewController: UICollectionViewDelegate, UICollectionViewDataSou
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         
-        collectionView.register(BooksCollectionViewCell.self, forCellWithReuseIdentifier: BooksCollectionViewCell.reuseId)
+        collectionView.register(BooksCollectionViewCell.self,
+                                forCellWithReuseIdentifier: BooksCollectionViewCell.reuseId)
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
@@ -74,16 +77,17 @@ extension GenreViewController: UICollectionViewDelegate, UICollectionViewDataSou
     private func set(with cells: [Book]) {
         self.cells = cells
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cells.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BooksCollectionViewCell.reuseId, for: indexPath) as! BooksCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BooksCollectionViewCell.reuseId,
+                                                      for: indexPath) as! BooksCollectionViewCell
         cell.title.text = cells[indexPath.row].name
         cell.authors.text = cells[indexPath.row].authors[0].first_name + " " + cells[indexPath.row].authors[0].last_name
         cell.imageView.image = UIImage(named: "book")
-        
         return cell
     }
     
@@ -92,5 +96,6 @@ extension GenreViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let infoBook = cells[indexPath.row]
         presenter?.didSelectItem(with: infoBook)
     }
+    
 }
 

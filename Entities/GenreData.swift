@@ -52,4 +52,5 @@ struct GenreData {
     var pageData: [ListSection] {
         [artisticLiterature, nonFiction, childrenLiterature]
     }
+    
 }

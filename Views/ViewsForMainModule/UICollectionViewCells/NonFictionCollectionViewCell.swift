@@ -41,6 +41,7 @@ class NonFictionCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
 
 // MARK: - setup Layouts
@@ -64,4 +65,5 @@ extension NonFictionCollectionViewCell {
             make.bottom.equalToSuperview()
         }
     }
+    
 }

@@ -13,7 +13,6 @@ protocol MainInteractorProtocol: AnyObject{
 
 class MainInteractor {
     weak var presenter: MainPresenterProtocol?
-    
 }
 
 //  MARK: - MainInteractorProtocol
@@ -25,8 +24,8 @@ extension MainInteractor: MainInteractorProtocol {
             for genre in try await genres()!.content {
                 dict[genre.name] = genre.id
             }
-            
             self.presenter?.genresLoaded(with: dict)
         }
     }
+    
 }

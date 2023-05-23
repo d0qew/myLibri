@@ -4,6 +4,7 @@
 //
 //  Created by Daniil Konashenko on 05.05.2023.
 //
+
 import UIKit
 
 class GenreAssembly{
@@ -20,4 +21,5 @@ class GenreAssembly{
         
         return view
     }
+    
 }

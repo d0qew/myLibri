@@ -21,4 +21,5 @@ class BookInfoAssembly{
         
         return view
     }
+    
 }

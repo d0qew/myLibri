@@ -23,6 +23,7 @@ class BookInfoPresenter {
         self.router = router
         self.interactor = interactor
     }
+    
 }
 
 //  MARK: - BookInfoPresenterProtocol
@@ -41,4 +42,5 @@ extension BookInfoPresenter: BookInfoPresenterProtocol {
     @MainActor func buttonTapped() {
         interactor.dowloadBook()
     }
+    
 }

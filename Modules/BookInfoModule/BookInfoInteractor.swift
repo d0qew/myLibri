@@ -17,6 +17,7 @@ class BookInfoInteractor {
     init(book: Book) {
         self.book = book
     }
+    
 }
 
 //  MARK: - BookInfoInteractorProtocol

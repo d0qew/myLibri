@@ -21,4 +21,5 @@ extension MainRouter: MainRouterProtocol {
         let vc = GenreAssembly.configure(title: title, idGenre: idGenre)
         view?.navigationController?.pushViewController(vc, animated: true)
     }
+    
 }

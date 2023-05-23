@@ -24,6 +24,7 @@ class MainPresenter {
         self.router = router
         self.interactor = interactor
     }
+    
 }
 
 //  MARK: - MainPresenterProtocol
@@ -40,4 +41,5 @@ extension MainPresenter: MainPresenterProtocol {
     func genresLoaded(with dict: [String : Int]) {
         genresDictionary = dict
     }
+    
 }

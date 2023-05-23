@@ -13,7 +13,6 @@ protocol GenreRouterProtocol: AnyObject {
 
 class GenreRouter {
     weak var view: GenreViewController?
-    
 }
 
 // MARK: - GenreRouterProtocol
@@ -22,4 +21,5 @@ extension GenreRouter: GenreRouterProtocol {
         let vc = BookInfoAssembly.configure(book: book)
         view?.navigationController?.pushViewController(vc, animated: true)
     }
+    
 }

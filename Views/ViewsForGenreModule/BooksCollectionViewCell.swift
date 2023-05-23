@@ -54,7 +54,9 @@ class BooksCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
+
 // MARK: - setup Layouts
 extension BooksCollectionViewCell {
     private func setupLayouts() {
@@ -81,5 +83,6 @@ extension BooksCollectionViewCell {
             make.trailing.equalTo(imageView).inset(20)
         }
     }
+    
 }
 

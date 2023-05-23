@@ -8,7 +8,6 @@
 import Foundation
 
 protocol GenrePresenterProtocol: AnyObject {
-    
     func viewDidLoaded()
     func titleLoaded(with title: String)
     func booksLoaded(books: [Book])
@@ -24,6 +23,7 @@ class GenrePresenter {
         self.router = router
         self.interactor = interactor
     }
+    
 }
 
 // MARK: - GenrePresenterProtocol
@@ -43,4 +43,5 @@ extension GenrePresenter: GenrePresenterProtocol {
     func didSelectItem(with book: Book) {
         router.openBook(with: book)
     }
+    
 }

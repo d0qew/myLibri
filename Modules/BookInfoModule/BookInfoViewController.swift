@@ -161,6 +161,7 @@ class BookInfoViewController: UIViewController {
     @objc func tapButton() {
         presenter?.buttonTapped()
     }
+    
 }
 
 //  MARK: - BookInfoViewControllerProtocol
@@ -180,6 +181,7 @@ extension BookInfoViewController: BookInfoViewControllerProtocol {
         imageViewBook.image = image
         configureImage()
     }
+    
 }
 
 

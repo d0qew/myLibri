@@ -7,10 +7,10 @@
 
 import Foundation
 
-
 protocol GenreInteractorProtocol: AnyObject{
     func getBooks() async
 }
+
 class GenreInteractor {
     weak var presenter: GenrePresenterProtocol?
     let title: String
@@ -20,6 +20,7 @@ class GenreInteractor {
         self.title = title
         self.idGenre = idGenre
     }
+    
 }
 
 // MARK: - GenreInteractorProtocol
