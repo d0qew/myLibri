@@ -92,7 +92,7 @@ class BookInfoViewController: UIViewController {
         imageViewBook.snp.makeConstraints { make in
             make.top.equalTo(authorBook.snp.bottom).inset(-5)
             make.leading.trailing.equalToSuperview().inset(15)
-            make.size.equalTo(StructScreenSize.shared.screenWidth - 30)
+            make.size.equalTo(ScreenSize.shared().screenWidth - 30)
         }
         
         contentView.addSubview(descriptionLabel)
@@ -119,6 +119,7 @@ class BookInfoViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(20)
         }
     }
+    
     private func configureImage() {
         imageViewBook.translatesAutoresizingMaskIntoConstraints = false
         imageViewBook.contentMode = .scaleAspectFit

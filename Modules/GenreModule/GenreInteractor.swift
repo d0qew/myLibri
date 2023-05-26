@@ -31,7 +31,7 @@ extension GenreInteractor: GenreInteractorProtocol {
         
         if idGenre != nil {
             Task.init {
-                let books = try await BooksMarket.shared.getBooks(with: idGenre!)
+                let books = try await BooksMarket.shared().getBooks(with: idGenre!)
                 presenter?.booksLoaded(books: books!.content)
             }
         }

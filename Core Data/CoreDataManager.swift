@@ -9,8 +9,15 @@ import UIKit
 import CoreData
 
 public final class CoreDataManager{
-    public static let shared = CoreDataManager()
+    public static var instance: CoreDataManager?
     private init() {}
+    
+    static func shared() -> CoreDataManager {
+        if instance == nil {
+            instance = CoreDataManager()
+        }
+        return instance!
+    }
     
     // MARK: - CRUD
     func createSavedBook(_ id: Int64, title: String, author: String, imageData: Data, bookData: Data) {

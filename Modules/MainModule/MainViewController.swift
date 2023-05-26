@@ -14,7 +14,7 @@ protocol MainViewControllerProtocol: AnyObject {
 class MainViewController: UIViewController {
     var presenter: MainPresenterProtocol?
     var collectionView: UICollectionView! = nil
-    var sections = GenreData.shared.pageData
+    var sections = GenreData.shared().pageData
     
     override func viewDidLoad() {
         super.viewDidLoad()

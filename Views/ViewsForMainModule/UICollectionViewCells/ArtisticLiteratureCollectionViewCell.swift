@@ -54,7 +54,7 @@ extension ArtisticLiteratureCollectionViewCell {
         imageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(-20)
-            make.size.equalTo(StructScreenSize.shared.screenWidth * 0.3)
+            make.size.equalTo(ScreenSize.shared().screenWidth * 0.3)
         }
        
         addSubview(title)

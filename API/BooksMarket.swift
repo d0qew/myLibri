@@ -9,7 +9,14 @@
 import UIKit
 
 public final class BooksMarket {
-    static let shared = BooksMarket()
+    private static var instance: BooksMarket?
+    
+    static func shared() -> BooksMarket {
+        if instance == nil {
+            instance = BooksMarket()
+        }
+        return instance!
+    }
     
     private let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4NDc4MTcxNywiZXhwIjoxNjg0ODI0OTE3fQ.8C2Urd_yldqoIJ6-VuiFNlrWa_-dl7FrVY-jnTCpevc"
     var imageCache = NSCache<NSString, UIImage>()

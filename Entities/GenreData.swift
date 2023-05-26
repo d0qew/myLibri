@@ -7,8 +7,17 @@
 
 import UIKit
 
-struct GenreData {
-    static let shared = GenreData()
+class GenreData {
+    private static var instance: GenreData?
+    
+    private init() {}
+    
+    static func shared() -> GenreData{
+        if instance == nil {
+            instance = GenreData()
+        }
+        return instance!
+    }
     
     private let artisticLiterature: ListSection = {
         .artisticLiterature([.init(title: "Фэнтези", image: UIImage(named: "Fantasy")),
