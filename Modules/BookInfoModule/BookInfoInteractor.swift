@@ -26,15 +26,22 @@ extension BookInfoInteractor: BookInfoInteractorProtocol {
     func getInfoBook() {
         presenter?.bookLoaded(book: book)
         Task.init {
-            let image = try await BooksMarket.shared().getImage(idBook: self.book.id)
+            let image = try await BooksMarket
+                .shared()
+                .getImage(idBook: self.book.id)
+            
             self.presenter?.imageLoaded(image: image)
         }
     }
     
     func dowloadBook() {
         Task.init {
-            let bookDowlanded = try await BooksMarket.shared().dowloadBook(idBook: self.book.id)
-            print(bookDowlanded!)
+            guard let bookDowlanded = try await BooksMarket
+                .shared()
+                .dowloadBook(idBook: self.book.id) else {
+                return
+            }
+            print(bookDowlanded)
         }
     }
     

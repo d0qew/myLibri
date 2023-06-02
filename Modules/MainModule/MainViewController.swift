@@ -21,6 +21,10 @@ class MainViewController: UIViewController {
         title = "Главная"
         view.backgroundColor = .systemBackground
         configureCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         presenter?.viewDidLoaded()
     }
     

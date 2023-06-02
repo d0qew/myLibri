@@ -18,7 +18,7 @@ public final class BooksMarket {
         return instance!
     }
     
-    private let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4NDc4MTcxNywiZXhwIjoxNjg0ODI0OTE3fQ.8C2Urd_yldqoIJ6-VuiFNlrWa_-dl7FrVY-jnTCpevc"
+    private let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4NTcyODQxMywiZXhwIjoxNjg1NzcxNjEzfQ.Ab26CdFOVzjSuwR_vUhQQeDl9lEBHNg5vWg_dJcAoBA"
     var imageCache = NSCache<NSString, UIImage>()
     
     func getBooks(with idGenre: Int) async throws -> Books? {
