@@ -28,7 +28,6 @@ class ArtisticLiteratureCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
         
         return imageView
     }()
@@ -48,7 +47,8 @@ class ArtisticLiteratureCollectionViewCell: UICollectionViewCell {
 extension ArtisticLiteratureCollectionViewCell {
     private func setupLayouts() {
         backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1 )
-        layer.cornerRadius = 12
+        layer.cornerRadius = 15
+        clipsToBounds = true
         
         addSubview(imageView)
         imageView.snp.makeConstraints { make in

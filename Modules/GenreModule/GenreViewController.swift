@@ -18,17 +18,37 @@ class GenreViewController: UIViewController {
     var collectionView: UICollectionView! = nil
     var cells = [Book]()
     
+    private lazy var spinner: CustomSpinner = {
+        let spinner = CustomSpinner(squareLength: 50)
+        return spinner
+    }()
+        
     override func viewDidLoad(){
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        setupSpinner()
         presenter?.viewDidLoaded()
     }
+}
+
+// MARK: - Setup spinner
+extension GenreViewController {
+    func setupSpinner() {
+        view.addSubview(spinner)
+        spinner.startAnimation(delay: 0.04, replicates: 20)
+    }
     
+    func stopSpinner() {
+        spinner.stopAnimation()
+        spinner.removeFromSuperview()
+    }
 }
 
 // MARK: - GenreViewControllerProtocol
 extension GenreViewController: GenreViewControllerProtocol {
     func updateCollectionView(with books: [Book]) {
+        stopSpinner()
+        
         set(with: books)
             self.configureCollectionView()
     }

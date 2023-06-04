@@ -32,7 +32,7 @@ class BookInfoViewController: UIViewController {
     }()
     
     private var contentSize: CGSize {
-        CGSize(width: view.frame.width, height: view.frame.height * 0.9)
+        CGSize(width: view.frame.width, height: view.frame.height * 0.79)
     }
     
     var titleBook =  UILabel()
@@ -50,7 +50,30 @@ class BookInfoViewController: UIViewController {
         view.backgroundColor = .systemBackground
         presenter?.viewDidLoaded()
     }
+}
+
+//  MARK: - BookInfoViewControllerProtocol
+extension BookInfoViewController: BookInfoViewControllerProtocol {
+    func updateInfoBook(book: Book) {
+        descriptionLabel.text = "Описание:"
+        
+        titleBook.text = book.name
+        authorBook.text = "Автор: " + book.authors[0].first_name + " " + book.authors[0].last_name
+        descriptionBook.text = book.description
+        publisherBook.text = "Издатель: " + book.publisher
+        
+        configureViews()
+    }
     
+    func updateImage(image: UIImage?){
+        imageViewBook.image = image
+        configureImage()
+    }
+    
+}
+
+//MARK: - Layout
+extension BookInfoViewController {
     private func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -162,27 +185,4 @@ class BookInfoViewController: UIViewController {
     @objc func tapButton() {
         presenter?.buttonTapped()
     }
-    
 }
-
-//  MARK: - BookInfoViewControllerProtocol
-extension BookInfoViewController: BookInfoViewControllerProtocol {
-    func updateInfoBook(book: Book) {
-        descriptionLabel.text = "Описание:"
-        
-        titleBook.text = book.name
-        authorBook.text = "Автор: " + book.authors[0].first_name + " " + book.authors[0].last_name
-        descriptionBook.text = book.description
-        publisherBook.text = "Издатель: " + book.publisher
-        
-        configureViews()
-    }
-    
-    func updateImage(image: UIImage?){
-        imageViewBook.image = image
-        configureImage()
-    }
-    
-}
-
-

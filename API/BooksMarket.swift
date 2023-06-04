@@ -18,11 +18,11 @@ public final class BooksMarket {
         return instance!
     }
     
-    private let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4NTcyODQxMywiZXhwIjoxNjg1NzcxNjEzfQ.Ab26CdFOVzjSuwR_vUhQQeDl9lEBHNg5vWg_dJcAoBA"
+    private let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4NTg5OTQ2NCwiZXhwIjoxNjg1OTQyNjY0fQ.JTEy710Yl80Wxe--kpEzwZ0w8q8L3K6SHERV8GguJB8"
     var imageCache = NSCache<NSString, UIImage>()
     
     func getBooks(with idGenre: Int) async throws -> Books? {
-        guard let url = URL(string: "http://localhost:8080/api/books?page=0&size=5&genre_ids=\(idGenre)") else {
+        guard let url = URL(string: "http://localhost:8080/api/books?page=0&size=7&genre_ids=\(idGenre)") else {
             return nil
         }
         

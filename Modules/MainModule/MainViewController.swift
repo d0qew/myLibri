@@ -114,7 +114,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         collectionView.register(GenreCollectionViewHeaderReusableView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: GenreCollectionViewHeaderReusableView.reuseId)
-        
+    
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

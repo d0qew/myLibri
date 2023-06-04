@@ -41,7 +41,6 @@ class BooksCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
         
         return imageView
     }()
@@ -61,7 +60,9 @@ class BooksCollectionViewCell: UICollectionViewCell {
 extension BooksCollectionViewCell {
     private func setupLayouts() {
         backgroundColor = UIColor.clear
-
+        layer.cornerRadius = 15
+        clipsToBounds = true
+        
         addSubview(imageView)
         imageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
