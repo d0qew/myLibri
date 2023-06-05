@@ -66,7 +66,7 @@ extension GenreViewController {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: Double(ScreenSize.shared().screenWidth * 0.45),
-                                 height: Double(ScreenSize.shared().screenHeight * 0.29))
+                                 height: Double(ScreenSize.shared().screenWidth * 0.63))
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 0
         return layout
