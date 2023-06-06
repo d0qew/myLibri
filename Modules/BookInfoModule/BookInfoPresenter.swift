@@ -9,8 +9,7 @@ import UIKit
 
 protocol BookInfoPresenterProtocol: AnyObject {
     func viewDidLoaded()
-    func bookLoaded(book: Book)
-    func imageLoaded(image: UIImage?)
+    func bookLoaded(book: Book, image: UIImage?)
     func buttonTapped()
 }
 
@@ -32,13 +31,10 @@ extension BookInfoPresenter: BookInfoPresenterProtocol {
         interactor.getInfoBook()
     }
     
-    func bookLoaded(book: Book) {
-        view?.updateInfoBook(book: book)
+    func bookLoaded(book: Book, image: UIImage?) {
+        view?.updateInfoBook(book: book, image: image)
     }
-    func imageLoaded(image: UIImage?) {
-        view?.updateImage(image: image)
-    }
-    
+ 
     @MainActor func buttonTapped() {
         interactor.dowloadBook()
     }

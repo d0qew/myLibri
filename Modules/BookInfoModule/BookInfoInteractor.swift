@@ -24,13 +24,12 @@ class BookInfoInteractor {
 @MainActor
 extension BookInfoInteractor: BookInfoInteractorProtocol {
     func getInfoBook() {
-        presenter?.bookLoaded(book: book)
         Task.init {
             let image = try await BooksMarket
                 .shared()
                 .getImage(idBook: self.book.id)
             
-            self.presenter?.imageLoaded(image: image)
+            self.presenter?.bookLoaded(book: book, image: image)
         }
     }
     

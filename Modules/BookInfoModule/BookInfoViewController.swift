@@ -9,8 +9,7 @@ import UIKit
 import SnapKit
 
 protocol BookInfoViewControllerProtocol: AnyObject {
-    func updateInfoBook(book: Book)
-    func updateImage(image: UIImage?)
+    func updateInfoBook(book: Book, image: UIImage?)
 }
 
 class BookInfoViewController: UIViewController {
@@ -20,20 +19,15 @@ class BookInfoViewController: UIViewController {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .systemBackground
         scrollView.frame = view.bounds
-        scrollView.contentSize = contentSize
         return scrollView
     }()
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
         contentView.backgroundColor = .systemBackground
-        contentView.frame.size = contentSize
+        contentView.frame = scrollView.bounds
         return contentView
     }()
-    
-    private var contentSize: CGSize {
-        CGSize(width: view.frame.width, height: view.frame.height * 0.79)
-    }
     
     var titleBook =  UILabel()
     var authorBook = UILabel()
@@ -50,48 +44,34 @@ class BookInfoViewController: UIViewController {
         view.backgroundColor = .systemBackground
         presenter?.viewDidLoaded()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let content = scrollView.subviews.reduce(CGRect.zero) {
+            $0.union($1.frame)
+        }
+        scrollView.contentSize = content.size
+    }
 }
 
 //  MARK: - BookInfoViewControllerProtocol
 extension BookInfoViewController: BookInfoViewControllerProtocol {
-    func updateInfoBook(book: Book) {
+    func updateInfoBook(book: Book, image: UIImage?) {
         descriptionLabel.text = "Описание:"
         
         titleBook.text = book.name
         authorBook.text = "Автор: " + book.authors[0].first_name + " " + book.authors[0].last_name
+        imageViewBook.image = image
         descriptionBook.text = book.description
         publisherBook.text = "Издатель: " + book.publisher
         
         configureViews()
     }
     
-    func updateImage(image: UIImage?){
-        imageViewBook.image = image
-        configureImage()
-    }
-    
 }
 
 //MARK: - Layout
 extension BookInfoViewController {
-    private func setupViews() {
-        view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        
-        contentView.addSubview(titleBook)
-        titleBook.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(15)
-        }
-        
-        contentView.addSubview(authorBook)
-        authorBook.snp.makeConstraints { make in
-            make.top.equalTo(titleBook.snp.bottom)
-            make.leading.trailing.equalToSuperview().inset(15)
-        }
-        
-    }
-    
     private func configureViews() {
         titleBook.font = UIFont.boldSystemFont(ofSize: 22)
         titleBook.textAlignment = .left
@@ -107,43 +87,6 @@ extension BookInfoViewController {
         authorBook.lineBreakMode = .byClipping
         authorBook.translatesAutoresizingMaskIntoConstraints = false
         
-        setupViews()
-    }
-    
-    private func setupImage() {
-        contentView.addSubview(imageViewBook)
-        imageViewBook.snp.makeConstraints { make in
-            make.top.equalTo(authorBook.snp.bottom).inset(-5)
-            make.leading.trailing.equalToSuperview().inset(15)
-            make.size.equalTo(ScreenSize.shared().screenWidth - 30)
-        }
-        
-        contentView.addSubview(descriptionLabel)
-        descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(imageViewBook.snp.bottom).inset(-10)
-            make.leading.trailing.equalToSuperview().inset(15)
-        }
-        
-        contentView.addSubview(descriptionBook)
-        descriptionBook.snp.makeConstraints { make in
-            make.top.equalTo(descriptionLabel.snp.bottom).inset(-5)
-            make.leading.trailing.equalToSuperview().inset(15)
-        }
-        
-        contentView.addSubview(publisherBook)
-        publisherBook.snp.makeConstraints { make in
-            make.top.equalTo(descriptionBook.snp.bottom).inset(-5)
-            make.leading.trailing.equalToSuperview().inset(15)
-        }
-        
-        contentView.addSubview(dowloadBook)
-        dowloadBook.snp.makeConstraints { make in
-            make.top.equalTo(publisherBook.snp.bottom).inset(-20)
-            make.leading.trailing.equalToSuperview().inset(20)
-        }
-    }
-    
-    private func configureImage() {
         imageViewBook.translatesAutoresizingMaskIntoConstraints = false
         imageViewBook.contentMode = .scaleAspectFit
         imageViewBook.clipsToBounds = true
@@ -179,7 +122,68 @@ extension BookInfoViewController {
         dowloadBook.backgroundColor = .clear
         dowloadBook.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
         
-        setupImage()
+        setupViews()
+    }
+    
+    private func setupViews() {
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.equalTo(view.snp.leading)
+            make.trailing.equalTo(view.snp.trailing)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
+        
+        scrollView.addSubview(contentView)
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        contentView.addSubview(titleBook)
+        titleBook.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(15)
+        }
+        
+        contentView.addSubview(authorBook)
+        authorBook.snp.makeConstraints { make in
+            make.top.equalTo(titleBook.snp.bottom).inset(-5)
+            make.leading.trailing.equalToSuperview().inset(15)
+        }
+        
+        contentView.addSubview(imageViewBook)
+        imageViewBook.snp.makeConstraints { make in
+            make.top.equalTo(authorBook.snp.bottom).inset(-5)
+            make.leading.trailing.equalToSuperview().inset(15)
+            make.width.equalTo(view.frame.width - 30)
+            make.height.equalTo(view.frame.width * 1.42)
+        }
+        
+        contentView.addSubview(descriptionLabel)
+        descriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(imageViewBook.snp.bottom).inset(-10)
+            make.leading.trailing.equalToSuperview().inset(15)
+        }
+        
+        contentView.addSubview(descriptionBook)
+        descriptionBook.snp.makeConstraints { make in
+            make.top.equalTo(descriptionLabel.snp.bottom).inset(-5)
+            make.leading.trailing.equalToSuperview().inset(15)
+        }
+        
+        contentView.addSubview(publisherBook)
+        publisherBook.snp.makeConstraints { make in
+            make.top.equalTo(descriptionBook.snp.bottom).inset(-5)
+            make.leading.trailing.equalToSuperview().inset(15)
+            
+        }
+        
+        contentView.addSubview(dowloadBook)
+        dowloadBook.snp.makeConstraints { make in
+            make.top.equalTo(publisherBook.snp.bottom).inset(-20)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(30)
+        }
     }
     
     @objc func tapButton() {
