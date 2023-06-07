@@ -41,7 +41,7 @@ extension MainViewController {
             guard let self = self else { return nil }
             let section = self.sections[sectionIndex]
             switch section {
-            case .artisticLiterature:
+            case .artisticLiterature, .nonFiction, .childrenLiterature:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                       heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -49,38 +49,12 @@ extension MainViewController {
                                                        heightDimension: .fractionalWidth(0.9 * 0.5))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
-                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-                section.interGroupSpacing = 10
-                section.contentInsets = .init(top: 5, leading: 15, bottom: 15, trailing: 15)
-                section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
-                return section
                 
-            case .nonFiction:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                      heightDimension: .fractionalHeight(1.0))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4),
-                                                       heightDimension: .fractionalWidth(0.9 * 0.5))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
                 section.interGroupSpacing = 10
                 section.contentInsets = .init(top: 5, leading: 15, bottom: 15, trailing: 15)
                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
-                return section
                 
-            case .childrenLiterature:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                      heightDimension: .fractionalHeight(1.0))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4),
-                                                       heightDimension: .fractionalWidth(0.9 * 0.5))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                let section = NSCollectionLayoutSection(group: group)
-                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-                section.interGroupSpacing = 10
-                section.contentInsets = .init(top: 5, leading: 15, bottom: 15, trailing: 15)
-                section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
                 return section
             }
         }
