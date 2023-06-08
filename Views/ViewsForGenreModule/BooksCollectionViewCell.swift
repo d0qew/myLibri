@@ -13,7 +13,7 @@ class BooksCollectionViewCell: UICollectionViewCell {
     
     var title: UILabel = {
         let textLabel = UILabel()
-        textLabel.textColor = UIColor.white
+        textLabel.textColor = UIColor.black
         textLabel.textAlignment = .center
         textLabel.font = UIFont.boldSystemFont(ofSize: 14)
         textLabel.numberOfLines = 0
@@ -59,29 +59,33 @@ class BooksCollectionViewCell: UICollectionViewCell {
 // MARK: - setup Layouts
 extension BooksCollectionViewCell {
     private func setupLayouts() {
-        backgroundColor = UIColor.clear
+        backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
         layer.cornerRadius = 15
         clipsToBounds = true
         
         addSubview(imageView)
         imageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalToSuperview().inset(10)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.width.equalTo(ScreenSize.shared().screenWidth * 0.45 - 20)
+            make.height.equalTo(ScreenSize.shared().screenWidth * 0.62)
         }
         
         addSubview(title)
         title.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(imageView).inset(20)
-            make.leading.equalTo(imageView).inset(20)
-            make.trailing.equalTo(imageView).inset(20)
+            make.top.equalTo(imageView.snp.bottom).inset(-7)
+            make.leading.equalToSuperview().inset(10)
+            make.trailing.equalToSuperview().inset(10)
         }
         
         addSubview(authors)
         authors.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(imageView).inset(20)
-            make.leading.equalTo(imageView).inset(20)
-            make.trailing.equalTo(imageView).inset(20)
+            make.bottom.equalToSuperview().inset(10)
+            make.leading.equalToSuperview().inset(10)
+            make.trailing.equalToSuperview().inset(10)
         }
     }
     
