@@ -10,7 +10,7 @@ import Foundation
 protocol GenrePresenterProtocol: AnyObject {
     func viewDidLoaded()
     func titleLoaded(with title: String)
-    func booksLoaded(books: [Book])
+    func booksLoaded(books: BooksModel)
     func didSelectItem(with book: Book)
 }
 
@@ -36,7 +36,7 @@ extension GenrePresenter: GenrePresenterProtocol {
         self.view?.updateView(with: title)
     }
     
-    func booksLoaded(books: [Book]) {
+    func booksLoaded(books: BooksModel) {
         self.view?.updateCollectionView(with: books)
     }
     

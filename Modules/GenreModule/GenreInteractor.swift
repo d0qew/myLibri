@@ -5,7 +5,7 @@
 //  Created by Daniil Konashenko on 05.05.2023.
 //
 
-import Foundation
+import UIKit
 
 protocol GenreInteractorProtocol: AnyObject{
     func getBooks() async
@@ -38,7 +38,19 @@ extension GenreInteractor: GenreInteractorProtocol {
                 guard let books = booksClosure?.content else {
                     return
                 }
-                presenter?.booksLoaded(books: books)
+                
+                var images: Dictionary<Int, UIImage> = [:]
+                
+                for book in books {
+                    let image = try await BooksMarket
+                        .shared()
+                        .getImage(idBook: book.id)
+                    
+                    images[book.id] = image
+                }
+                
+                let booksModel = BooksModel(books: books, images: images)
+                presenter?.booksLoaded(books: booksModel)
             }
         }
     }
