@@ -35,7 +35,8 @@ extension MainPresenter: MainPresenterProtocol {
     
     func didSelectItem(with title: String) {
         let idGenre = genresDictionary[title]
-        router.openGenre(with: title, idGenre: idGenre)
+        router.openGenre(with: title,
+                         idGenre: idGenre)
     }
     
     func genresLoaded(with dict: [String : Int]) {

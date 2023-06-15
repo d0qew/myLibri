@@ -11,7 +11,8 @@ class MainAssembly{
     static func configure() -> UIViewController {
         let interactor = MainInteractor()
         let router = MainRouter()
-        let presenter = MainPresenter(router: router, interactor: interactor)
+        let presenter = MainPresenter(router: router,
+                                      interactor: interactor)
         let view = MainViewController()
         
         view.presenter = presenter

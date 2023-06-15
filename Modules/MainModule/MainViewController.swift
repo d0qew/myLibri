@@ -38,7 +38,10 @@ extension MainViewController: MainViewControllerProtocol {
 extension MainViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
-            guard let self = self else { return nil }
+            guard let self = self else {
+                return nil
+            }
+            
             let section = self.sections[sectionIndex]
             switch section {
             case .artisticLiterature, .nonFiction, .childrenLiterature:
@@ -61,8 +64,10 @@ extension MainViewController {
     }
     
     private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
-        .init(layoutSize:.init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)),
-              elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        .init(layoutSize:.init(widthDimension: .fractionalWidth(1),
+                               heightDimension: .estimated(50)),
+              elementKind: UICollectionView.elementKindSectionHeader,
+              alignment: .top)
     }
     
 }
