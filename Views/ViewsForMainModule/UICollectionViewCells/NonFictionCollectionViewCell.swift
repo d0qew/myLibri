@@ -47,7 +47,10 @@ class NonFictionCollectionViewCell: UICollectionViewCell {
 // MARK: - setup Layouts
 extension NonFictionCollectionViewCell {
     private func setupLayouts() {
-        backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1 )
+        backgroundColor = UIColor(red: 245/255,
+                                  green: 245/255,
+                                  blue: 245/255,
+                                  alpha: 1 )
         layer.cornerRadius = 12
         
         addSubview(imageView)
