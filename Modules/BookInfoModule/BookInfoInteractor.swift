@@ -36,8 +36,8 @@ extension BookInfoInteractor: BookInfoInteractorProtocol {
     func dowloadBook() {
         Task.init {
             guard let bookDowlanded = try await BooksMarket
-                .shared()
-                .dowloadBook(idBook: self.book.id) else {
+                    .shared()
+                    .dowloadBook(idBook: self.book.id) else {
                 return
             }
             print(bookDowlanded)
