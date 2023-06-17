@@ -19,7 +19,9 @@ class GenreRouter {
 extension GenreRouter: GenreRouterProtocol {
     func openBook(with book: Book) {
         let vc = BookInfoAssembly.configure(book: book)
-        view?.navigationController?.pushViewController(vc, animated: true)
+        view?
+            .navigationController?
+            .pushViewController(vc, animated: true)
     }
     
 }
