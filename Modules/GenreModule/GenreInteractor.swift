@@ -28,31 +28,32 @@ class GenreInteractor {
 extension GenreInteractor: GenreInteractorProtocol {
     func getBooks(){
         presenter?.titleLoaded(with: title)
-        
-        if idGenre != nil {
-            Task.init {
-                let booksClosure = try await BooksMarket
-                    .shared()
-                    .getBooks(with: idGenre!)
-                
-                guard let books = booksClosure?.content else {
-                    return
-                }
-                
-                var images: Dictionary<Int, UIImage> = [:]
-                
-                for book in books {
-                    let image = try await BooksMarket
-                        .shared()
-                        .getImage(idBook: book.id)
-                    
-                    images[book.id] = image
-                }
-                
-                let booksModel = BooksModel(books: books, images: images)
-                presenter?.booksLoaded(books: booksModel)
+        guard let idGenre = idGenre else {
+            return
+        }
+        Task.init {
+            let booksClosure = try await BooksMarket
+                .shared()
+                .getBooks(with: idGenre)
+            
+            guard let books = booksClosure?.content else {
+                return
             }
+            
+            var images: Dictionary<Int, UIImage> = [:]
+            
+            for book in books {
+                let image = try await BooksMarket
+                    .shared()
+                    .getImage(idBook: book.id)
+                
+                images[book.id] = image
+            }
+            
+            let booksModel = BooksModel(books: books, images: images)
+            presenter?.booksLoaded(books: booksModel)
         }
     }
     
 }
+
