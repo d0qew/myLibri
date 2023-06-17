@@ -11,7 +11,10 @@ class BookInfoAssembly{
     static func configure(book: Book) -> UIViewController {
         let interactor = BookInfoInteractor(book: book)
         let router = BookInfoRouter()
-        let presenter = BookInfoPresenter(router: router, interactor: interactor)
+        let presenter = BookInfoPresenter(
+            router: router,
+            interactor: interactor
+        )
         let view = BookInfoViewController()
         
         view.presenter = presenter
