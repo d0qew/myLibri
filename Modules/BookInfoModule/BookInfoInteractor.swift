@@ -25,11 +25,13 @@ class BookInfoInteractor {
 extension BookInfoInteractor: BookInfoInteractorProtocol {
     func getInfoBook() {
         Task.init {
-            let image = try await BooksMarket
-                .shared()
-                .getImage(idBook: self.book.id)
-            
-            self.presenter?.bookLoaded(book: book, image: image)
+            if let image = try await BooksMarket
+                    .shared()
+                    .getImage(idBook: self.book.id) {
+                self.presenter?.bookLoaded(book: book, image: image)
+            } else {
+                self.presenter?.bookLoaded(book: book, image: UIImage(named: "book"))
+            }
         }
     }
     

@@ -43,11 +43,13 @@ extension GenreInteractor: GenreInteractorProtocol {
             var images: Dictionary<Int, UIImage> = [:]
             
             for book in books {
-                let image = try await BooksMarket
-                    .shared()
-                    .getImage(idBook: book.id)
-                
-                images[book.id] = image
+                if let image = try await BooksMarket
+                        .shared()
+                        .getImage(idBook: book.id) {
+                    images[book.id] = image
+                } else {
+                    images[book.id] = UIImage(named: "book")
+                }
             }
             
             let booksModel = BooksModel(books: books, images: images)
