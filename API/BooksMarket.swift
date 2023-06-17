@@ -35,7 +35,6 @@ internal extension BooksMarket {
         guard let url = URL(string: urlString) else {
             return nil
         }
-        
         var request = URLRequest(url: url)
         setToken(for: &request, token: token)
         
@@ -52,7 +51,7 @@ internal extension BooksMarket {
 
 //  MARK: - Download Books
 internal extension BooksMarket {
-    func getBooks(with idGenre: Int) async throws -> Books? {
+    func getBooks(with idGenre: CustomStringConvertible) async throws -> Books? {
         let urlString = EndpointPath.booksDownload.url
         guard var urlComponents = URLComponents(string: urlString) else {
             return nil
@@ -60,7 +59,7 @@ internal extension BooksMarket {
         urlComponents.queryItems = [
             URLQueryItem(name: "page", value: "0"),
             URLQueryItem(name: "size", value: "7"),
-            URLQueryItem(name: "genre_ids", value: String(idGenre))
+            URLQueryItem(name: "genre_ids", value: idGenre.description)
         ]
         guard let url = urlComponents.url else {
             return nil
@@ -81,8 +80,8 @@ internal extension BooksMarket {
 
 //  MARK: - Download Images
 internal extension BooksMarket {
-    func getImage(idBook: Int) async throws -> UIImage? {
-        let urlString = String(format: EndpointPath.imageDownload.url, String(idBook))
+    func getImage(idBook: CustomStringConvertible) async throws -> UIImage? {
+        let urlString = String(format: EndpointPath.imageDownload.url, idBook.description)
         guard let url = URL(string: urlString) else {
             return nil
         }
@@ -106,8 +105,8 @@ internal extension BooksMarket {
 
 //  MARK: - Download Book's Data
 internal extension BooksMarket {
-    func dowloadBook(idBook: Int) async throws -> Data? {
-        let urlString = String(format: EndpointPath.dataBookDownload.url, String(idBook))
+    func dowloadBook(idBook: CustomStringConvertible) async throws -> Data? {
+        let urlString = String(format: EndpointPath.dataBookDownload.url, idBook.description)
         guard let url = URL(string: urlString) else {
             return nil
         }
