@@ -18,9 +18,13 @@ class MainRouter {
 //MARK: - MainRouterProtocol
 extension MainRouter: MainRouterProtocol {
     func openGenre(with title: String, idGenre: Int?) {
-        let vc = GenreAssembly.configure(title: title,
-                                         idGenre: idGenre)
-        view?.navigationController?.pushViewController(vc, animated: true)
+        let vc = GenreAssembly.configure(
+            title: title,
+            idGenre: idGenre
+        )
+        view?
+            .navigationController?
+            .pushViewController(vc, animated: true)
     }
     
 }
