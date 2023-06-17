@@ -9,9 +9,15 @@ import UIKit
 
 class GenreAssembly{
     static func configure(title: String, idGenre: Int?) -> UIViewController {
-        let interactor = GenreInteractor(title: title, idGenre: idGenre)
+        let interactor = GenreInteractor(
+            title: title,
+            idGenre: idGenre
+        )
         let router = GenreRouter()
-        let presenter = GenrePresenter(router: router, interactor: interactor)
+        let presenter = GenrePresenter(
+            router: router,
+            interactor: interactor
+        )
         let view = GenreViewController()
         
         view.presenter = presenter
