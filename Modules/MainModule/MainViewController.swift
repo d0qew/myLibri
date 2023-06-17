@@ -86,12 +86,7 @@ extension MainViewController {
             let section = NSCollectionLayoutSection(group: group)
             section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
             section.interGroupSpacing = 10
-            section.contentInsets = .init(
-                top: 5,
-                leading: 15,
-                bottom: 15,
-                trailing: 15
-            )
+            section.contentInsets = .init(top: 5, leading: 15, bottom: 15, trailing: 15)
             section.boundarySupplementaryItems = [supplementaryHeaderItem()]
             
             return section
@@ -121,7 +116,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor.clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
