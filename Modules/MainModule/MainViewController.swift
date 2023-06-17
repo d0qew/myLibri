@@ -15,7 +15,9 @@ protocol MainViewControllerProtocol: AnyObject {
 class MainViewController: UIViewController {
     var presenter: MainPresenterProtocol?
     var collectionView: UICollectionView! = nil
-    var sections = GenreData.shared().pageData
+    var sections = GenreData
+        .shared()
+        .pageData
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +45,7 @@ extension MainViewController: MainViewControllerProtocol {
             title: "Понятно",
             style: .default
         )
+        
         alertController.addAction(alertActionOK)
         present(alertController, animated: true)
     }
@@ -97,7 +100,7 @@ extension MainViewController {
     
     private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         .init(
-            layoutSize:.init(
+            layoutSize: .init(
                 widthDimension: .fractionalWidth(1),
                 heightDimension: .estimated(50)
             ),
@@ -111,7 +114,10 @@ extension MainViewController {
 //  MARK: - Setup Collection View
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     private func configureCollectionView() {
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+        collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: createLayout()
+        )
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -120,15 +126,23 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         
-        collectionView.register(ArtisticLiteratureCollectionViewCell.self,
-                                forCellWithReuseIdentifier: ArtisticLiteratureCollectionViewCell.reuseId)
-        collectionView.register(NonFictionCollectionViewCell.self,
-                                forCellWithReuseIdentifier: NonFictionCollectionViewCell.reuseId)
-        collectionView.register(ChildrenLiteratureCollectionViewCell.self,
-                                forCellWithReuseIdentifier: ChildrenLiteratureCollectionViewCell.reuseId)
-        collectionView.register(GenreCollectionViewHeaderReusableView.self,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: GenreCollectionViewHeaderReusableView.reuseId)
+        collectionView.register(
+            ArtisticLiteratureCollectionViewCell.self,
+            forCellWithReuseIdentifier: ArtisticLiteratureCollectionViewCell.reuseId
+        )
+        collectionView.register(
+            NonFictionCollectionViewCell.self,
+            forCellWithReuseIdentifier: NonFictionCollectionViewCell.reuseId
+        )
+        collectionView.register(
+            ChildrenLiteratureCollectionViewCell.self,
+            forCellWithReuseIdentifier: ChildrenLiteratureCollectionViewCell.reuseId
+        )
+        collectionView.register(
+            GenreCollectionViewHeaderReusableView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: GenreCollectionViewHeaderReusableView.reuseId
+        )
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
@@ -147,31 +161,39 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch sections[indexPath.section] {
         case .artisticLiterature(let items):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArtisticLiteratureCollectionViewCell.reuseId,
-                                                          for: indexPath) as! ArtisticLiteratureCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: ArtisticLiteratureCollectionViewCell.reuseId,
+                for: indexPath
+            ) as! ArtisticLiteratureCollectionViewCell
+            
             cell.imageView.image = items[indexPath.row].image
             cell.title.text = items[indexPath.row].title
-            return cell
             
+            return cell
         case .nonFiction(let items):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NonFictionCollectionViewCell.reuseId,
-                                                          for: indexPath) as! NonFictionCollectionViewCell
-            cell.imageView.image = items[indexPath.row].image
-            cell.title.text = items[indexPath.row].title
-            return cell
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: NonFictionCollectionViewCell.reuseId,
+                for: indexPath
+            ) as! NonFictionCollectionViewCell
             
-        case .childrenLiterature(let items):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChildrenLiteratureCollectionViewCell.reuseId,
-                                                          for: indexPath) as! ChildrenLiteratureCollectionViewCell
             cell.imageView.image = items[indexPath.row].image
             cell.title.text = items[indexPath.row].title
+            
+            return cell
+        case .childrenLiterature(let items):
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: ChildrenLiteratureCollectionViewCell.reuseId,
+                for: indexPath
+            ) as! ChildrenLiteratureCollectionViewCell
+            
+            cell.imageView.image = items[indexPath.row].image
+            cell.title.text = items[indexPath.row].title
+            
             return cell
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        viewForSupplementaryElementOfKind kind: String,
-                        at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             let header = collectionView.dequeueReusableSupplementaryView(
@@ -181,6 +203,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             ) as! GenreCollectionViewHeaderReusableView
             
             header.title.text = sections[indexPath.section].title
+            
             return header
         default:
             return UICollectionReusableView()
