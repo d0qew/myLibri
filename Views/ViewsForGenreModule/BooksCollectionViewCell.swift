@@ -19,7 +19,6 @@ class BooksCollectionViewCell: UICollectionViewCell {
         textLabel.numberOfLines = 0
         textLabel.adjustsFontSizeToFitWidth = false
         textLabel.lineBreakMode = .byClipping
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
         
         return textLabel
     }()
@@ -32,14 +31,12 @@ class BooksCollectionViewCell: UICollectionViewCell {
         textLabel.numberOfLines = 0
         textLabel.adjustsFontSizeToFitWidth = false
         textLabel.lineBreakMode = .byClipping
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
         
         return textLabel
     }()
     
     var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         
         return imageView
@@ -59,10 +56,12 @@ class BooksCollectionViewCell: UICollectionViewCell {
 // MARK: - setup Layouts
 extension BooksCollectionViewCell {
     private func setupLayouts() {
-        backgroundColor = UIColor(red: 245/255,
-                                  green: 245/255,
-                                  blue: 245/255,
-                                  alpha: 1)
+        backgroundColor = UIColor(
+            red: 245/255,
+            green: 245/255,
+            blue: 245/255,
+            alpha: 1
+        )
         layer.cornerRadius = 15
         clipsToBounds = true
         
