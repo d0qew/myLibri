@@ -161,30 +161,36 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch sections[indexPath.section] {
         case .artisticLiterature(let items):
-            let cell = collectionView.dequeueReusableCell(
+            guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: ArtisticLiteratureCollectionViewCell.reuseId,
                 for: indexPath
-            ) as! ArtisticLiteratureCollectionViewCell
+            ) as? ArtisticLiteratureCollectionViewCell else {
+                fatalError("Can't create new cell")
+            }
             
             cell.imageView.image = items[indexPath.row].image
             cell.title.text = items[indexPath.row].title
             
             return cell
         case .nonFiction(let items):
-            let cell = collectionView.dequeueReusableCell(
+            guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: NonFictionCollectionViewCell.reuseId,
                 for: indexPath
-            ) as! NonFictionCollectionViewCell
+            ) as? NonFictionCollectionViewCell else {
+                fatalError("Can't create new cell")
+            }
             
             cell.imageView.image = items[indexPath.row].image
             cell.title.text = items[indexPath.row].title
             
             return cell
         case .childrenLiterature(let items):
-            let cell = collectionView.dequeueReusableCell(
+            guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: ChildrenLiteratureCollectionViewCell.reuseId,
                 for: indexPath
-            ) as! ChildrenLiteratureCollectionViewCell
+            ) as? ChildrenLiteratureCollectionViewCell else {
+                fatalError("Can't create new cell")
+            }
             
             cell.imageView.image = items[indexPath.row].image
             cell.title.text = items[indexPath.row].title
@@ -196,11 +202,13 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            let header = collectionView.dequeueReusableSupplementaryView(
+            guard let header = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
                 withReuseIdentifier: GenreCollectionViewHeaderReusableView.reuseId,
                 for: indexPath
-            ) as! GenreCollectionViewHeaderReusableView
+            ) as? GenreCollectionViewHeaderReusableView else {
+                fatalError("Can't create new cell")
+            }
             
             header.title.text = sections[indexPath.section].title
             
