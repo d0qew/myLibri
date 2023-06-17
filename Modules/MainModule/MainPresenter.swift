@@ -11,6 +11,7 @@ protocol MainPresenterProtocol: AnyObject {
     func viewDidLoaded()
     func didSelectItem(with title: String)
     func genresLoaded(with dict: [String : Int])
+    func nonConnection()
 }
 
 class MainPresenter {
@@ -29,7 +30,7 @@ class MainPresenter {
 
 //  MARK: - MainPresenterProtocol
 extension MainPresenter: MainPresenterProtocol {
-    func viewDidLoaded() {
+    @MainActor func viewDidLoaded() {
         interactor.getGenres()
     }
     
@@ -43,4 +44,7 @@ extension MainPresenter: MainPresenterProtocol {
         genresDictionary = dict
     }
     
+    func nonConnection() {
+        view?.showAlert()
+    }
 }

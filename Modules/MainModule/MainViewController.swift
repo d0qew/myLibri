@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 protocol MainViewControllerProtocol: AnyObject {
+    func showAlert()
 }
 
 class MainViewController: UIViewController {
@@ -32,6 +33,20 @@ class MainViewController: UIViewController {
 
 //  MARK: - MainViewControllerProtocol
 extension MainViewController: MainViewControllerProtocol {
+    func showAlert() {
+        let alertController = UIAlertController(
+            title: "🛜",
+            message: "Отсутствует соединение с сервером, проверьте соединение с интернетом",
+            preferredStyle: .alert
+        )
+        let alertActionOK = UIAlertAction(
+            title: "Понятно",
+            style: .default
+        )
+        alertController.addAction(alertActionOK)
+        present(alertController, animated: true)
+    }
+    
 }
 
 //  MARK: - Layout
@@ -93,11 +108,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         collectionView.register(GenreCollectionViewHeaderReusableView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: GenreCollectionViewHeaderReusableView.reuseId)
-    
+        
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-            }
+        }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

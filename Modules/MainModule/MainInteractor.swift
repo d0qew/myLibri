@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MainInteractorProtocol: AnyObject{
-    func getGenres()
+    func getGenres() async
 }
 
 class MainInteractor {
@@ -16,22 +16,22 @@ class MainInteractor {
 }
 
 //  MARK: - MainInteractorProtocol
+@MainActor
 extension MainInteractor: MainInteractorProtocol {
     func getGenres() {
         Task.init {
             let genresClosure = BooksMarket
                 .shared()
                 .getGeners
-            
-            guard let genres = try await genresClosure()?.content else {
-                //need create alert about bad connection with server
-                return
+            if let genres = try await genresClosure()?.content {
+                var dict: [String: Int] = [:]
+                genres.forEach { genre in
+                    dict[genre.name] = genre.id
+                }
+                self.presenter?.genresLoaded(with: dict)
+            } else {
+                presenter?.nonConnection()
             }
-            var dict: [String: Int] = [:]
-            for genre in genres {
-                dict[genre.name] = genre.id
-            }
-            self.presenter?.genresLoaded(with: dict)
         }
     }
 }
