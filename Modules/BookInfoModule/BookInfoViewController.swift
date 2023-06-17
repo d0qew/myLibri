@@ -78,16 +78,13 @@ extension BookInfoViewController {
         titleBook.numberOfLines = 0
         titleBook.adjustsFontSizeToFitWidth = false
         titleBook.lineBreakMode = .byClipping
-        titleBook.translatesAutoresizingMaskIntoConstraints = false
         
         authorBook.font = UIFont.systemFont(ofSize: 18)
         authorBook.textAlignment = .left
         authorBook.numberOfLines = 0
         authorBook.adjustsFontSizeToFitWidth = false
         authorBook.lineBreakMode = .byClipping
-        authorBook.translatesAutoresizingMaskIntoConstraints = false
         
-        imageViewBook.translatesAutoresizingMaskIntoConstraints = false
         imageViewBook.contentMode = .scaleAspectFit
         imageViewBook.clipsToBounds = true
         
@@ -96,21 +93,18 @@ extension BookInfoViewController {
         descriptionLabel.numberOfLines = 0
         descriptionLabel.adjustsFontSizeToFitWidth = false
         descriptionLabel.lineBreakMode = .byClipping
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         descriptionBook.font = UIFont.systemFont(ofSize: 16)
         descriptionBook.textAlignment = .justified
         descriptionBook.numberOfLines = 0
         descriptionBook.adjustsFontSizeToFitWidth = false
         descriptionBook.lineBreakMode = .byClipping
-        descriptionBook.translatesAutoresizingMaskIntoConstraints = false
         
         publisherBook.font = UIFont.systemFont(ofSize: 16)
         publisherBook.textAlignment = .right
         publisherBook.numberOfLines = 0
         publisherBook.adjustsFontSizeToFitWidth = false
         publisherBook.lineBreakMode = .byClipping
-        publisherBook.translatesAutoresizingMaskIntoConstraints = false
         
         dowloadBook.setTitle("Скачать книгу", for: .normal)
         dowloadBook.titleLabel?.font = UIFont.systemFont(ofSize: 20)
