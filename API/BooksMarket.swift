@@ -16,10 +16,38 @@ public final class BooksMarket {
         }
         return instance!
     }
-    
     var imageCache = NSCache<NSString, UIImage>()
+    private let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4NzA5OTUzNSwiZXhwIjoxNjg3MTQyNzM1fQ.5ggh9oqvXdzFdWH27b2fIb_tvby3KkswbkDpQndgI58"
     
-    private let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4NzAwNjM2MiwiZXhwIjoxNjg3MDQ5NTYyfQ.CeWSIzjqojRWKhh5nqEJcWxH944LqF_HWbeR3PmCH3s"
+    enum NetworkResponse: String, Error {
+        case success
+        case authenticationError = "You need to be authenticated first."
+        case badRequest          = "Bad request."
+        case outdates            = "The url you requested is outdated."
+        case failed              = "Network request failed."
+        case noData              = "Response returned with no data to decode."
+        case unabledToDecode     = "We could not decode the response."
+    }
+    
+    enum Result: Error {
+        case success
+        case failure(String)
+    }
+    
+    private func handleNetworkResponse(_ response: HTTPURLResponse) -> Result {
+        switch response.statusCode {
+        case 200...299:
+            return .success
+        case 401...500:
+            return .failure(NetworkResponse.authenticationError.rawValue)
+        case 501...599:
+            return .failure(NetworkResponse.badRequest.rawValue)
+        case 600:
+            return .failure(NetworkResponse.outdates.rawValue)
+        default:
+            return .failure(NetworkResponse.failed.rawValue)
+        }
+    }
     
     private func setToken(for request: inout URLRequest, token: String) {
         request.setValue(
@@ -33,15 +61,23 @@ internal extension BooksMarket {
     func getGeners() async throws -> Genres? {
         let urlString = EndpointPath.genresDownload.url
         guard let url = URL(string: urlString) else {
-            return nil
+            throw NetworkError.missingURL
         }
         var request = URLRequest(url: url)
         setToken(for: &request, token: token)
         
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
-            let genreJSON = try JSONDecoder().decode(Genres.self, from: data)
-            return genreJSON
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let responseHTTP = response as? HTTPURLResponse else {
+                throw NetworkError.badResponse
+            }
+            switch handleNetworkResponse(responseHTTP) {
+                case .success:
+                    let genreJSON = try JSONDecoder().decode(Genres.self, from: data)
+                    return genreJSON
+                case .failure(let error):
+                    throw Result.failure(error)
+            }
         } catch {
             print("--Error JSON decode \(error.localizedDescription)")
             return nil
@@ -54,7 +90,7 @@ internal extension BooksMarket {
     func getBooks(with idGenre: CustomStringConvertible) async throws -> Books? {
         let urlString = EndpointPath.booksDownload.url
         guard var urlComponents = URLComponents(string: urlString) else {
-            return nil
+            throw NetworkError.missingURL
         }
         urlComponents.queryItems = [
             URLQueryItem(name: "page", value: "0"),
@@ -68,9 +104,17 @@ internal extension BooksMarket {
         setToken(for: &request, token: token)
         
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
-            let booksJSON = try JSONDecoder().decode(Books.self, from: data)
-            return booksJSON
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let responseHTTP = response as? HTTPURLResponse else {
+                throw NetworkError.badResponse
+            }
+            switch handleNetworkResponse(responseHTTP) {
+                case .success:
+                    let booksJSON = try JSONDecoder().decode(Books.self, from: data)
+                    return booksJSON
+                case .failure(let error):
+                    throw Result.failure(error)
+            }
         } catch {
             print("--Error JSON decode \(error.localizedDescription)")
             return nil
@@ -91,13 +135,20 @@ internal extension BooksMarket {
             var request = URLRequest(url: url)
             setToken(for: &request, token: token)
             
-            let (data, _) = try await URLSession.shared.data(for: request)
-            if let image = UIImage(data: data){
-                self.imageCache.setObject(image, forKey: url.absoluteString as NSString)
-                return image
-            }else {
-                return nil
-                
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let responseHTTP = response as? HTTPURLResponse else {
+                throw NetworkError.badResponse
+            }
+            switch handleNetworkResponse(responseHTTP) {
+                case .success:
+                    if let image = UIImage(data: data){
+                        self.imageCache.setObject(image, forKey: url.absoluteString as NSString)
+                        return image
+                    } else {
+                        return nil
+                    }
+                case .failure(let error):
+                    throw Result.failure(error)
             }
         }
     }
@@ -113,8 +164,15 @@ internal extension BooksMarket {
         var request = URLRequest(url: url)
         setToken(for: &request, token: token)
         
-        let (data, _) = try await URLSession.shared.data(for: request)
-        return data
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard let responseHTTP = response as? HTTPURLResponse else {
+            throw NetworkError.badResponse
+        }
+        switch handleNetworkResponse(responseHTTP) {
+        case .success:
+            return data
+        case .failure(let error):
+            throw Result.failure(error)
+        }
     }
-    
 }
