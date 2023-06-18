@@ -9,8 +9,8 @@ import Foundation
 
 protocol GenrePresenterProtocol: AnyObject {
     func viewDidLoaded()
-    func titleLoaded(with title: String)
-    func booksLoaded(books: BooksModel)
+    func titleLoaded(with title: String) async
+    func booksLoaded(books: BooksModel) async
     func didSelectItem(with book: Book)
 }
 
@@ -26,18 +26,18 @@ class GenrePresenter {
     
 }
 
-// MARK: - GenrePresenterProtocol
+//  MARK: - GenrePresenterProtocol
 extension GenrePresenter: GenrePresenterProtocol {
-    @MainActor func viewDidLoaded() {
+    func viewDidLoaded() {
         interactor.getBooks()
     }
 
-    func titleLoaded(with title: String) {
-        self.view?.updateView(with: title)
+    func titleLoaded(with title: String) async {
+        await self.view?.updateView(with: title)
     }
     
-    func booksLoaded(books: BooksModel) {
-        self.view?.updateCollectionView(with: books)
+    func booksLoaded(books: BooksModel) async {
+        await self.view?.updateCollectionView(with: books)
     }
     
     func didSelectItem(with book: Book) {

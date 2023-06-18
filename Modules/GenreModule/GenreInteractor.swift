@@ -24,14 +24,13 @@ class GenreInteractor {
 }
 
 // MARK: - GenreInteractorProtocol
-@MainActor
 extension GenreInteractor: GenreInteractorProtocol {
-    func getBooks(){
-        presenter?.titleLoaded(with: title)
-        guard let idGenre = idGenre else {
-            return
-        }
+    func getBooks() {
         Task.init {
+            await presenter?.titleLoaded(with: title)
+            guard let idGenre = idGenre else {
+                return
+            }
             let booksClosure = try await BooksMarket
                 .shared()
                 .getBooks(with: idGenre)
@@ -53,7 +52,7 @@ extension GenreInteractor: GenreInteractorProtocol {
             }
             
             let booksModel = BooksModel(books: books, images: images)
-            presenter?.booksLoaded(books: booksModel)
+            await presenter?.booksLoaded(books: booksModel)
         }
     }
     

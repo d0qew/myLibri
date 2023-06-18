@@ -9,8 +9,8 @@ import UIKit
 import SnapKit
 
 protocol GenreViewControllerProtocol: AnyObject {
-    func updateView(with title: String)
-    func updateCollectionView(with books: BooksModel)
+    func updateView(with title: String) async
+    func updateCollectionView(with books: BooksModel) async
 }
 
 class GenreViewController: UIViewController {
@@ -45,6 +45,7 @@ extension GenreViewController {
 }
 
 //  MARK: - GenreViewControllerProtocol
+@MainActor
 extension GenreViewController: GenreViewControllerProtocol {
     func updateCollectionView(with books: BooksModel) {
         stopSpinner()
