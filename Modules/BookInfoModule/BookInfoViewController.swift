@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol BookInfoViewControllerProtocol: AnyObject {
-    func updateInfoBook(book: Book, image: UIImage?)
+    func updateInfoBook(book: Book, image: UIImage?) async
 }
 
 class BookInfoViewController: UIViewController {
@@ -55,6 +55,7 @@ class BookInfoViewController: UIViewController {
 }
 
 //  MARK: - BookInfoViewControllerProtocol
+@MainActor
 extension BookInfoViewController: BookInfoViewControllerProtocol {
     func updateInfoBook(book: Book, image: UIImage?) {
         descriptionLabel.text = "Описание:"

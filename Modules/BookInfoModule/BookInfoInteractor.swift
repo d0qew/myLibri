@@ -9,6 +9,7 @@ import UIKit
 
 protocol BookInfoInteractorProtocol: AnyObject{
     func getInfoBook() async
+    func downloadBook() async
 }
 
 class BookInfoInteractor {
@@ -21,28 +22,26 @@ class BookInfoInteractor {
 }
 
 //  MARK: - BookInfoInteractorProtocol
-@MainActor
 extension BookInfoInteractor: BookInfoInteractorProtocol {
     func getInfoBook() {
         Task.init {
             if let image = try await BooksMarket
                     .shared()
                     .getImage(idBook: self.book.id) {
-                self.presenter?.bookLoaded(book: book, image: image)
+                await self.presenter?.bookLoaded(book: book, image: image)
             } else {
-                self.presenter?.bookLoaded(book: book, image: UIImage(named: "book"))
+                await self.presenter?.bookLoaded(book: book, image: UIImage(named: "book"))
             }
         }
     }
     
-    func dowloadBook() {
+    func downloadBook() {
         Task.init {
-            guard let bookDowlanded = try await BooksMarket
+            guard let book = try await BooksMarket
                     .shared()
                     .dowloadBook(idBook: self.book.id) else {
                 return
             }
-            print(bookDowlanded)
         }
     }
     

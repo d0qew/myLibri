@@ -9,7 +9,7 @@ import UIKit
 
 protocol BookInfoPresenterProtocol: AnyObject {
     func viewDidLoaded()
-    func bookLoaded(book: Book, image: UIImage?)
+    func bookLoaded(book: Book, image: UIImage?) async
     func buttonTapped()
 }
 
@@ -27,16 +27,16 @@ class BookInfoPresenter {
 
 //  MARK: - BookInfoPresenterProtocol
 extension BookInfoPresenter: BookInfoPresenterProtocol {
-    @MainActor func viewDidLoaded() {
+    func viewDidLoaded() {
         interactor.getInfoBook()
     }
     
-    func bookLoaded(book: Book, image: UIImage?) {
-        view?.updateInfoBook(book: book, image: image)
+    func bookLoaded(book: Book, image: UIImage?) async {
+        await view?.updateInfoBook(book: book, image: image)
     }
  
-    @MainActor func buttonTapped() {
-        interactor.dowloadBook()
+    func buttonTapped() {
+        interactor.downloadBook()
     }
     
 }
