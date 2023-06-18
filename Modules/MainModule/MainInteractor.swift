@@ -16,7 +16,6 @@ class MainInteractor {
 }
 
 //  MARK: - MainInteractorProtocol
-@MainActor
 extension MainInteractor: MainInteractorProtocol {
     func getGenres() {
         Task.init {
@@ -30,7 +29,7 @@ extension MainInteractor: MainInteractorProtocol {
                 }
                 self.presenter?.genresLoaded(with: dict)
             } else {
-                presenter?.nonConnection()
+                await presenter?.nonConnection()
             }
         }
     }

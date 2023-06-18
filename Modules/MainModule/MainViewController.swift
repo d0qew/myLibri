@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol MainViewControllerProtocol: AnyObject {
-    func showAlert()
+    func showAlert() async
 }
 
 class MainViewController: UIViewController {
@@ -34,6 +34,7 @@ class MainViewController: UIViewController {
 }
 
 //  MARK: - MainViewControllerProtocol
+@MainActor
 extension MainViewController: MainViewControllerProtocol {
     func showAlert() {
         let alertController = UIAlertController(
