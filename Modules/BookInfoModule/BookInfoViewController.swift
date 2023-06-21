@@ -58,10 +58,14 @@ class BookInfoViewController: UIViewController {
 @MainActor
 extension BookInfoViewController: BookInfoViewControllerProtocol {
     func updateInfoBook(book: Book, image: UIImage?) {
-        descriptionLabel.text = "Описание:"
+        var authors = "Авторы:" + book.authors.flatMap { author in
+            " \(author.first_name) \(author.last_name),"
+        }
+        authors.removeLast()
         
+        descriptionLabel.text = "Описание:"
         titleBook.text = book.name
-        authorBook.text = "Автор: " + book.authors[0].first_name + " " + book.authors[0].last_name
+        authorBook.text = authors
         imageViewBook.image = image
         descriptionBook.text = book.description
         publisherBook.text = "Издатель: " + book.publisher
