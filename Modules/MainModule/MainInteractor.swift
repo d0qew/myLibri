@@ -22,14 +22,17 @@ extension MainInteractor: MainInteractorProtocol {
             let genresClosure = BooksMarket
                 .shared()
                 .getGeners
-            if let genres = try await genresClosure()?.content {
+            do {
+                let genres = try await genresClosure()?.content
                 var dict: [String: Int] = [:]
-                genres.forEach { genre in
+                genres?.forEach { genre in
                     dict[genre.name] = genre.id
                 }
                 self.presenter?.genresLoaded(with: dict)
-            } else {
+            } catch NetworkError.nonConnection {
                 await presenter?.nonConnection()
+            } catch {
+                return
             }
         }
     }

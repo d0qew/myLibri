@@ -17,7 +17,7 @@ public final class BooksMarket {
         return instance!
     }
     var imageCache = NSCache<NSString, UIImage>()
-    private let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4NzA5OTUzNSwiZXhwIjoxNjg3MTQyNzM1fQ.5ggh9oqvXdzFdWH27b2fIb_tvby3KkswbkDpQndgI58"
+    private let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4NzM0ODc4MSwiZXhwIjoxNjg3MzkxOTgxfQ.a2IWGI6uMYvrBqnHAI4Zi2i4Pn5zw2DxTy0mAniNMNY"
     
     enum NetworkResponse: String, Error {
         case success
@@ -79,8 +79,7 @@ internal extension BooksMarket {
                     throw Result.failure(error)
             }
         } catch {
-            print("--Error JSON decode \(error.localizedDescription)")
-            return nil
+            throw NetworkError.nonConnection
         }
     }
 }
