@@ -13,7 +13,7 @@ class ChildrenLiteratureCollectionViewCell: UICollectionViewCell {
     
     var title: UILabel = {
         let textLabel = UILabel()
-        textLabel.textColor = UIColor.black
+        textLabel.textColor = .label
         textLabel.textAlignment = .center
         textLabel.font = UIFont.boldSystemFont(ofSize: 14)
         textLabel.numberOfLines = 0
@@ -45,12 +45,7 @@ class ChildrenLiteratureCollectionViewCell: UICollectionViewCell {
 // MARK: - setup Layouts
 extension ChildrenLiteratureCollectionViewCell {
     private func setupLayouts() {
-        backgroundColor = UIColor(
-            red: 245/255,
-            green: 245/255,
-            blue: 245/255,
-            alpha: 1
-        )
+        backgroundColor = .systemGray3
         layer.cornerRadius = 12
         
         addSubview(imageView)

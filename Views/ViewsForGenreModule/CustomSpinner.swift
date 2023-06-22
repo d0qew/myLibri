@@ -18,6 +18,7 @@ final class CustomSpinner: UIView {
     /// и CAShapeLayer:
     private lazy var shapeLayer: CAShapeLayer = {
         let shapeLayer = CAShapeLayer()
+        shapeLayer.fillColor = UIColor.label.cgColor
         return shapeLayer
     }()
 
