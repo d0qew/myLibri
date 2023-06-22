@@ -75,7 +75,7 @@ extension BookInfoViewController: BookInfoViewControllerProtocol {
     
 }
 
-//MARK: - Layout
+//  MARK: - Layout
 extension BookInfoViewController {
     private func configureViews() {
         titleBook.font = UIFont.boldSystemFont(ofSize: 22)
