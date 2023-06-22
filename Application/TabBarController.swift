@@ -15,12 +15,23 @@ class TabBarController: UITabBarController {
     
     private func generateTabBar() {
         viewControllers = [
-            generateNVC(viewController: MainAssembly.configure(), title: "Главная", image: UIImage(systemName: "book")),
-            generateNVC(viewController: LibraryAssembly.configure(), title: "Библиотека", image: UIImage(systemName:"books.vertical"))
+            generateNVC(
+                viewController: MainAssembly.configure(),
+                title: "Главная",
+                image: UIImage(systemName: "book")
+            ),
+            generateNVC(
+                viewController: LibraryAssembly.configure(),
+                title: "Библиотека",
+                image: UIImage(systemName:"books.vertical")
+            )
         ]
     }
     
-    private func generateNVC(viewController: UIViewController, title: String, image: UIImage?) -> UIViewController {
+    private func generateNVC(viewController: UIViewController,
+                             title: String, image: UIImage?
+    ) -> UIViewController {
+        
         viewController.tabBarItem.title = title
         viewController.tabBarItem.image = image
         
