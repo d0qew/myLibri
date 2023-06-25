@@ -16,8 +16,8 @@ public final class BooksMarket {
         }
         return instance!
     }
-    var imageCache = NSCache<NSString, UIImage>()
-    private let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4NzM0ODc4MSwiZXhwIjoxNjg3MzkxOTgxfQ.a2IWGI6uMYvrBqnHAI4Zi2i4Pn5zw2DxTy0mAniNMNY"
+    private var imageCache = NSCache<NSString, UIImage>()
+    private let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4NzY5Mzg5NCwiZXhwIjoxNjg3NzM3MDk0fQ.cGkNl3IdXa1UkfKc0awDqAPHymeqR2RiwpwmGpCiVN4"
     
     enum NetworkResponse: String, Error {
         case success

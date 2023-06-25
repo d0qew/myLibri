@@ -11,7 +11,10 @@ class LibraryAssembly{
     static func configure() -> UIViewController {
         let interactor = LibraryInteractor()
         let router = LibraryRouter()
-        let presenter = LibraryPresenter(router: router, interactor: interactor)
+        let presenter = LibraryPresenter(
+            router: router,
+            interactor: interactor
+        )
         let view = LibraryViewController()
         
         view.presenter = presenter

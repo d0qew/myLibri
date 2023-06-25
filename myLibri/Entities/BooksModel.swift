@@ -11,5 +11,3 @@ struct BooksModel {
     var books: [Book]
     var images: Dictionary<Int, UIImage>
 }
-
-

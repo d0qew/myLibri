@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "B2137FFF-C161-4DCD-BFE7-CF5F67750833",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:myLibri.xcodeproj",
+      "identifier" : "63AF053329FAA936002CC96D",
+      "name" : "myLibri"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:myLibri.xcodeproj",
+        "identifier" : "63BC2C1D2A3C86E20044DF66",
+        "name" : "myLibriTests"
+      }
+    }
+  ],
+  "version" : 1
+}
