@@ -9,7 +9,9 @@ import UIKit
 
 class GenreAssembly{
     static func configure(title: String, idGenre: Int?) -> UIViewController {
+        let networkService = BooksMarket()
         let interactor = GenreInteractor(
+            networkService: networkService,
             title: title,
             idGenre: idGenre
         )

@@ -8,18 +8,15 @@
 
 import UIKit
 
-public final class BooksMarket {
-    private static var instance: BooksMarket?
-    static func shared() -> BooksMarket {
-        if instance == nil {
-            instance = BooksMarket()
-        }
-        return instance!
-    }
-    private var imageCache = NSCache<NSString, UIImage>()
-    private let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4NzY5Mzg5NCwiZXhwIjoxNjg3NzM3MDk0fQ.cGkNl3IdXa1UkfKc0awDqAPHymeqR2RiwpwmGpCiVN4"
+protocol NetworkService: DownloadBook, DownloadBooks, DownloadImage, DownloadGeners {
     
-    enum NetworkResponse: String, Error {
+}
+
+public final class BooksMarket: NetworkService  {
+    private var imageCache = NSCache<NSString, UIImage>()
+    private let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4ODA0Mzk1NiwiZXhwIjoxNjg4MDg3MTU2fQ.D_M7Q3Iq9jK0O6zh96Vz90QXokjP5pfKQZWei5TYBxc"
+    
+    private enum NetworkResponse: String, Error {
         case success
         case authenticationError = "You need to be authenticated first."
         case badRequest          = "Bad request."
@@ -29,7 +26,7 @@ public final class BooksMarket {
         case unabledToDecode     = "We could not decode the response."
     }
     
-    enum Result: Error {
+    private enum Result: Error {
         case success
         case failure(String)
     }
@@ -57,7 +54,7 @@ public final class BooksMarket {
     }
 }
 //  MARK: - Download Genres
-internal extension BooksMarket {
+extension BooksMarket {
     func getGeners() async throws -> Genres? {
         let urlString = EndpointPath.genresDownload.url
         guard let url = URL(string: urlString) else {
@@ -85,7 +82,7 @@ internal extension BooksMarket {
 }
 
 //  MARK: - Download Books
-internal extension BooksMarket {
+extension BooksMarket {
     func getBooks(with idGenre: CustomStringConvertible) async throws -> Books? {
         let urlString = EndpointPath.booksDownload.url
         guard var urlComponents = URLComponents(string: urlString) else {
@@ -122,7 +119,7 @@ internal extension BooksMarket {
 }
 
 //  MARK: - Download Images
-internal extension BooksMarket {
+extension BooksMarket {
     func getImage(idBook: CustomStringConvertible) async throws -> UIImage? {
         let urlString = String(format: EndpointPath.imageDownload.url, idBook.description)
         guard let url = URL(string: urlString) else {
@@ -154,8 +151,8 @@ internal extension BooksMarket {
 }
 
 //  MARK: - Download Book's Data
-internal extension BooksMarket {
-    func dowloadBook(idBook: CustomStringConvertible) async throws -> Data? {
+extension BooksMarket {
+    func downloadBook(idBook: CustomStringConvertible) async throws -> Data? {
         let urlString = String(format: EndpointPath.dataBookDownload.url, idBook.description)
         guard let url = URL(string: urlString) else {
             return nil

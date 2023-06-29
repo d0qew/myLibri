@@ -9,7 +9,10 @@ import UIKit
 
 class MainAssembly{
     static func configure() -> UIViewController {
-        let interactor = MainInteractor()
+        let networkService = BooksMarket()
+        let interactor = MainInteractor(
+            networkService: networkService
+        )
         let router = MainRouter()
         let presenter = MainPresenter(
             router: router,

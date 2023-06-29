@@ -13,14 +13,16 @@ protocol GenreInteractorProtocol: AnyObject{
 
 class GenreInteractor {
     weak var presenter: GenrePresenterProtocol?
+    var networkService: NetworkService
     let title: String
     let idGenre: Int?
     
-    init(title: String, idGenre: Int?) {
+    init(presenter: GenrePresenterProtocol? = nil, networkService: NetworkService, title: String, idGenre: Int?) {
+        self.presenter = presenter
+        self.networkService = networkService
         self.title = title
         self.idGenre = idGenre
     }
-    
 }
 
 // MARK: - GenreInteractorProtocol
@@ -31,8 +33,7 @@ extension GenreInteractor: GenreInteractorProtocol {
             guard let idGenre = idGenre else {
                 return
             }
-            let booksClosure = try await BooksMarket
-                .shared()
+            let booksClosure = try await networkService
                 .getBooks(with: idGenre)
             
             guard let books = booksClosure?.content else {
@@ -42,9 +43,8 @@ extension GenreInteractor: GenreInteractorProtocol {
             var images: Dictionary<Int, UIImage> = [:]
             
             for book in books {
-                if let image = try await BooksMarket
-                        .shared()
-                        .getImage(idBook: book.id) {
+                if let image = try await networkService
+                    .getImage(idBook: book.id) {
                     images[book.id] = image
                 } else {
                     images[book.id] = UIImage(named: "book")

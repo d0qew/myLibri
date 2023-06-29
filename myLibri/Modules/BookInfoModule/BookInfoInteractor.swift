@@ -15,8 +15,12 @@ protocol BookInfoInteractorProtocol: AnyObject{
 class BookInfoInteractor {
     weak var presenter: BookInfoPresenterProtocol?
     let book: Book
-    init(book: Book) {
+    var networkService: NetworkService
+    
+    init(presenter: BookInfoPresenterProtocol? = nil, book: Book, networkService: NetworkService) {
+        self.presenter = presenter
         self.book = book
+        self.networkService = networkService
     }
     
 }
@@ -25,8 +29,7 @@ class BookInfoInteractor {
 extension BookInfoInteractor: BookInfoInteractorProtocol {
     func getInfoBook() {
         Task.init {
-            if let image = try await BooksMarket
-                    .shared()
+            if let image = try await networkService
                     .getImage(idBook: self.book.id) {
                 await self.presenter?.bookLoaded(book: book, image: image)
             } else {
@@ -37,9 +40,8 @@ extension BookInfoInteractor: BookInfoInteractorProtocol {
     
     func downloadBook() {
         Task.init {
-            guard let book = try await BooksMarket
-                    .shared()
-                    .dowloadBook(idBook: self.book.id) else {
+            guard let book = try await networkService
+                    .downloadBook(idBook: self.book.id) else {
                 return
             }
         }

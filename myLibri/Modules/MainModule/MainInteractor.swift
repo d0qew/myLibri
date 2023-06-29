@@ -13,15 +13,20 @@ protocol MainInteractorProtocol: AnyObject{
 
 class MainInteractor {
     weak var presenter: MainPresenterProtocol?
+    var networkService: NetworkService
+    
+    init(presenter: MainPresenterProtocol? = nil, networkService: NetworkService) {
+        self.presenter = presenter
+        self.networkService = networkService
+    }
 }
 
 //  MARK: - MainInteractorProtocol
 extension MainInteractor: MainInteractorProtocol {
     func getGenres() {
         Task.init {
-            let genresClosure = BooksMarket
-                .shared()
-                .getGeners
+            let genresClosure = networkService.getGeners
+            
             do {
                 let genres = try await genresClosure()?.content
                 var dict: [String: Int] = [:]

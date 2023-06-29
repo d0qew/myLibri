@@ -9,7 +9,11 @@ import UIKit
 
 class BookInfoAssembly{
     static func configure(book: Book) -> UIViewController {
-        let interactor = BookInfoInteractor(book: book)
+        let networkService = BooksMarket()
+        let interactor = BookInfoInteractor(
+            book: book,
+            networkService: networkService
+        )
         let router = BookInfoRouter()
         let presenter = BookInfoPresenter(
             router: router,

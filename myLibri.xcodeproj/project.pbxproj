@@ -30,6 +30,7 @@
 		63A8AC022A17C81C00D312D9 /* BookInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8AC012A17C81C00D312D9 /* BookInfoRouter.swift */; };
 		63A8AC042A17C8B400D312D9 /* BookInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8AC032A17C8B400D312D9 /* BookInfoPresenter.swift */; };
 		63A8AC062A17C94600D312D9 /* BookInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8AC052A17C94600D312D9 /* BookInfoViewController.swift */; };
+		63ACCD812A4DB4D0006D861D /* NetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ACCD802A4DB4D0006D861D /* NetworkProtocols.swift */; };
 		63AF053829FAA936002CC96D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF053729FAA936002CC96D /* AppDelegate.swift */; };
 		63AF053C29FAA936002CC96D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF053B29FAA936002CC96D /* MainViewController.swift */; };
 		63AF055329FAC31D002CC96D /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF055229FAC31D002CC96D /* MainPresenter.swift */; };
@@ -86,6 +87,7 @@
 		63A8AC012A17C81C00D312D9 /* BookInfoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookInfoRouter.swift; sourceTree = "<group>"; };
 		63A8AC032A17C8B400D312D9 /* BookInfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookInfoPresenter.swift; sourceTree = "<group>"; };
 		63A8AC052A17C94600D312D9 /* BookInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookInfoViewController.swift; sourceTree = "<group>"; };
+		63ACCD802A4DB4D0006D861D /* NetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocols.swift; sourceTree = "<group>"; };
 		63AF053429FAA936002CC96D /* myLibri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myLibri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63AF053729FAA936002CC96D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63AF053B29FAA936002CC96D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				631D6AAB2A3E445D00AD6837 /* EndpointPath.swift */,
 				631D6ABA2A3F221400AD6837 /* NetworkError.swift */,
 				63A8ABF62A16237300D312D9 /* BooksStructDecode.swift */,
+				63ACCD802A4DB4D0006D861D /* NetworkProtocols.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				63AF053829FAA936002CC96D /* AppDelegate.swift in Sources */,
 				63A8ABF92A1645D100D312D9 /* BooksCollectionViewCell.swift in Sources */,
 				63A8ABFE2A17C6F500D312D9 /* BookInfoAssembly.swift in Sources */,
+				63ACCD812A4DB4D0006D861D /* NetworkProtocols.swift in Sources */,
 				635F7B402A0560BC005372AD /* GenreRouter.swift in Sources */,
 				63AF05732A006B91002CC96D /* ScreenSize.swift in Sources */,
 				631D6AAC2A3E445D00AD6837 /* EndpointPath.swift in Sources */,
