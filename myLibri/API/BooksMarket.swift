@@ -14,7 +14,7 @@ protocol NetworkService: DownloadBook, DownloadBooks, DownloadImage, DownloadGen
 
 public final class BooksMarket: NetworkService  {
     private var imageCache = NSCache<NSString, UIImage>()
-    private let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4ODA0Mzk1NiwiZXhwIjoxNjg4MDg3MTU2fQ.D_M7Q3Iq9jK0O6zh96Vz90QXokjP5pfKQZWei5TYBxc"
+    private let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkMHFldyIsImlhdCI6MTY4ODczNjc5MSwiZXhwIjoxNjg4Nzc5OTkxfQ.b452OpKIT4Oi_knVEr053Isvxbh0hHOnKVO7qYKBwVc"
     
     private enum NetworkResponse: String, Error {
         case success
@@ -53,6 +53,7 @@ public final class BooksMarket: NetworkService  {
         )
     }
 }
+
 //  MARK: - Download Genres
 extension BooksMarket {
     func getGeners() async throws -> Genres? {
@@ -83,7 +84,7 @@ extension BooksMarket {
 
 //  MARK: - Download Books
 extension BooksMarket {
-    func getBooks(with idGenre: CustomStringConvertible) async throws -> Books? {
+    func getBooks<T: CustomStringConvertible>(with idGenre: T) async throws -> Books? {
         let urlString = EndpointPath.booksDownload.url
         guard var urlComponents = URLComponents(string: urlString) else {
             throw NetworkError.missingURL
@@ -120,7 +121,7 @@ extension BooksMarket {
 
 //  MARK: - Download Images
 extension BooksMarket {
-    func getImage(idBook: CustomStringConvertible) async throws -> UIImage? {
+    func getImage<T: CustomStringConvertible>(idBook: T) async throws -> UIImage? {
         let urlString = String(format: EndpointPath.imageDownload.url, idBook.description)
         guard let url = URL(string: urlString) else {
             return nil
@@ -152,7 +153,7 @@ extension BooksMarket {
 
 //  MARK: - Download Book's Data
 extension BooksMarket {
-    func downloadBook(idBook: CustomStringConvertible) async throws -> Data? {
+    func downloadBook<T: CustomStringConvertible>(idBook: T) async throws -> Data? {
         let urlString = String(format: EndpointPath.dataBookDownload.url, idBook.description)
         guard let url = URL(string: urlString) else {
             return nil

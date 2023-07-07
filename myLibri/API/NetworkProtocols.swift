@@ -13,16 +13,16 @@ protocol DownloadGeners {
 }
 
 protocol DownloadBooks {
-    func getBooks(with idGenre: CustomStringConvertible) async throws -> Books?
+    func getBooks<T: CustomStringConvertible>(with idGenre: T) async throws -> Books?
 
 }
 
 protocol DownloadImage {
-    func getImage(idBook: CustomStringConvertible) async throws -> UIImage?
+    func getImage<T: CustomStringConvertible>(idBook: T) async throws -> UIImage?
 
 }
 
 protocol DownloadBook {
-    func downloadBook(idBook: CustomStringConvertible) async throws -> Data?
+    func downloadBook<T: CustomStringConvertible>(idBook: T) async throws -> Data?
 
 }
